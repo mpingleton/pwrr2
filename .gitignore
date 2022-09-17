@@ -1,0 +1,4 @@
+node_modules
+pwrr2-ui/node_modules
+pwrr2-ui/build
+.env

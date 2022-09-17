@@ -1,0 +1,9 @@
+{
+  "short_name": "PWRR2",
+  "name": "Project, Workflow, Requirement, Resource, Version 2",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
