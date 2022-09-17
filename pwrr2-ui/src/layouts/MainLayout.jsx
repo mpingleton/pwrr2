@@ -222,7 +222,6 @@ function MainLayout(props) {
             >
                 {props.element}
             </Box>
-            
         </Box>
     );
 }
