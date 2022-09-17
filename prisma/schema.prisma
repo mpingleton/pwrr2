@@ -9,3 +9,180 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id Int @id @default(autoincrement())
+  username String @db.VarChar(255)
+  passphrase String @db.VarChar(255)
+  disabled Boolean @default(false)
+  admin Boolean @default(false)
+  rank String @db.VarChar(10)
+  firstName String @db.VarChar(50)
+  lastName String @db.VarChar(50)
+
+  session Session[]
+  organizationAdmins OrganizationAdmins[]
+  userGroupAssignment UserGroupAssignment[]
+  projectComment ProjectComment[]
+  projectFile ProjectFile[]
+}
+
+model Session {
+  id Int @id @default(autoincrement())
+  userId Int
+  token String @unique
+  timestamp DateTime
+  expiration DateTime
+  invalidated Boolean @default(false)
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Organization {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(255)
+
+  group Group[]
+  organizationAdmins OrganizationAdmins[]
+}
+
+model OrganizationAdmins {
+  id Int @id @default(autoincrement())
+  organizationId Int
+  userId Int
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Group {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(255)
+  description String @db.VarChar(255)
+  role String @db.VarChar(10)
+  organizationId Int
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+  userGroupAssignment UserGroupAssignment[]
+  project Project[]
+  task Task[]
+  groupNotification GroupNotification[]
+}
+
+model UserGroupAssignment {
+  id Int @id @default(autoincrement())
+  userId Int
+  groupId Int
+  admin Boolean @default(false)
+
+  user User @relation(fields: [userId], references: [id])
+  group Group @relation(fields: [groupId], references: [id])
+}
+
+model Project {
+  id Int @id @default(autoincrement())
+  ownerId Int
+  title String @db.VarChar(255)
+  supportsMisionSystem String @db.VarChar(255)
+  requirement String @db.VarChar(1023)
+  justification String @db.VarChar(1023)
+  proposedTechnicalSolution String @db.VarChar(1023)
+  taskless Boolean @default(false)
+  submittedDate DateTime
+  validatedDate DateTime?
+  plannedDate DateTime?
+  implementedDate DateTime?
+  cancelledDate DateTime?
+  validationDueDate DateTime?
+  planningDueDate DateTime?
+  implementationDueDate DateTime?
+
+  group Group @relation(fields: [ownerId], references: [id])
+  projectComment ProjectComment[]
+  projectFile ProjectFile[]
+  projectContact ProjectContact[]
+  groupNotification GroupNotification[]
+}
+
+model ProjectComment {
+  id Int @id @default(autoincrement())
+  projectId Int
+  userId Int
+  timestamp DateTime
+  comment String @db.VarChar(1023)
+
+  project Project @relation(fields: [projectId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+}
+
+model ProjectFile {
+  id Int @id @default(autoincrement())
+  projectId Int
+  filename String @db.VarChar(255)
+  description String @db.VarChar(1023)
+  checksum String @db.VarChar(512)
+  url String @db.VarChar(255) @unique
+  byteSize Int
+  submitterId Int
+  timestamp DateTime
+
+  project Project @relation(fields: [projectId], references: [id])
+  user User @relation(fields: [submitterId], references: [id])
+}
+
+model Contact {
+  id Int @id @default(autoincrement())
+  firstName String @db.VarChar(255)
+  lastName String @db.VarChar(255)
+  rank String @db.VarChar(10)
+  phone String @db.VarChar(20)
+  email String @db.VarChar(255)
+
+  projectContact ProjectContact[]
+}
+
+model ProjectContact {
+  id Int @id @default(autoincrement())
+  projectId Int
+  contactId Int
+  role String @db.VarChar(100)
+
+  project Project @relation(fields: [projectId], references: [id])
+  contact Contact @relation(fields: [contactId], references: [id])
+}
+
+model Task {
+  id Int @id @default(autoincrement())
+  groupId Int
+  status String @db.VarChar(10)
+  dueDate DateTime?
+  completedDate DateTime?
+  details String @db.VarChar(1023)
+
+  group Group @relation(fields: [groupId], references: [id])
+  dependentTask TaskDependency[] @relation("DependentTask")
+  independentTask TaskDependency[] @relation("IndependentTask")
+  groupNotification GroupNotification[]
+}
+
+model TaskDependency {
+  id Int @id @default(autoincrement())
+  independentTaskId Int
+  dependentTaskId Int
+
+  independentTask Task @relation("IndependentTask", fields: [independentTaskId], references: [id])
+  dependentTask Task @relation("DependentTask", fields: [dependentTaskId], references: [id])
+}
+
+model GroupNotification {
+  id Int @id @default(autoincrement())
+  groupId Int
+  projectId Int?
+  taskId Int?
+  action String @db.VarChar(20)
+  dismissed Boolean @default(false)
+
+  group Group @relation(fields: [groupId], references: [id])
+  project Project? @relation(fields: [projectId], references: [id])
+  task Task? @relation(fields: [taskId], references: [id])
+}
