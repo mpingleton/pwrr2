@@ -4,6 +4,7 @@ import {
     Box,
     AppBar,
     Toolbar,
+    Drawer,
     IconButton,
     Paper,
     InputBase
@@ -13,6 +14,16 @@ import NotificationIcon from '@mui/icons-material/Notifications';
 import SearchIcon from '@mui/icons-material/Search';
 
 function MainLayout(props) {
+    const NavigationDrawer = (
+        <Drawer
+            anchor='left'
+            open={true}
+            onClose={() => {}}
+        >
+            
+        </Drawer>
+    );
+
     const AppBarLeft = (
         <Box
             sx={{
@@ -76,7 +87,7 @@ function MainLayout(props) {
     );
 
     const MainAppBar = (
-        <AppBar position="fixed">
+        <AppBar position="static">
             <Toolbar
                 sx={{
                     justifyContent: "space-evenly"
@@ -92,11 +103,23 @@ function MainLayout(props) {
     return (
         <Box
             sx={{
+                display: 'flex',
+                flexDirection: 'column',
                 width: '100vw',
                 height: '100vh'
             }}
         >
             {MainAppBar}
+            <Box
+                sx={{
+                    width: '100%',
+                    height: '100%',
+                    overflow: 'scroll'
+                }}
+            >
+                {props.element}
+            </Box>
+            
         </Box>
     );
 }
