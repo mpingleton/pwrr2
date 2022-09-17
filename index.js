@@ -7,6 +7,8 @@ const { PrismaClient } = require('@prisma/client');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const apiRoutes = require('./api/routes');
+
 const prisma = new PrismaClient();
 
 const app = express();
@@ -17,6 +19,7 @@ const init = async () => {
     // Start the express server.
     app.use(bodyParser.json());
     app.use(cors());
+    app.use('/api', apiRoutes);
     app.listen(3001, () => console.log('Server is running on port 3001.'));
 
     return 0;
