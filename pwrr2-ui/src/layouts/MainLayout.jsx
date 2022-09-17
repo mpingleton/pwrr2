@@ -7,20 +7,109 @@ import {
     Drawer,
     IconButton,
     Paper,
-    InputBase
+    InputBase,
+    ListItem,
+    ListItemIcon,
+    Divider,
+    List,
+    ListItemText,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import NotificationIcon from '@mui/icons-material/Notifications';
 import SearchIcon from '@mui/icons-material/Search';
+import BackIcon from '@mui/icons-material/NavigateBefore';
+import ForwardIcon from '@mui/icons-material/NavigateNext';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
 function MainLayout(props) {
+    const [isNavigationDrawerOpen, setNavigationDrawerOpen] = useState(false);
+    const [isNotificationDrawerOpen, setNotificationDrawerOpen] = useState(false);
+
     const NavigationDrawer = (
         <Drawer
+            variant='persistent'
             anchor='left'
-            open={true}
-            onClose={() => {}}
+            open={isNavigationDrawerOpen}
+            onClose={() => setNavigationDrawerOpen(false)}
+            sx={{
+                zIndex: 2,
+                width: 300,
+                '& .MuiDrawer-paper': {
+                    width: 300,
+                    boxSizing: 'border-box'
+                },
+            }}
         >
-            
+            <Toolbar>
+                <IconButton
+                    edge='end'
+                    color='inherit'
+                    sx={{ marginLeft: 'auto' }}
+                    onClick={() => setNavigationDrawerOpen(false)}
+                >
+                    <BackIcon />
+                </IconButton>
+            </Toolbar>
+            <Divider />
+            <List>
+                <ListItem
+                    button
+                    onClick={() => {}}
+                >
+                    <ListItemIcon>
+                        <ArrowCircleRightIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Dashboard" />
+                </ListItem>
+                <ListItem
+                    button
+                    onClick={() => {}}
+                >
+                    <ListItemIcon>
+                        <ArrowCircleRightIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Projects" />
+                </ListItem>
+                <ListItem
+                    button
+                    onClick={() => {}}
+                >
+                    <ListItemIcon>
+                        <ArrowCircleRightIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Tasks" />
+                </ListItem>
+            </List>
+        </Drawer>
+    );
+
+    const NotificationDrawer = (
+        <Drawer
+            variant='persistent'
+            anchor='right'
+            open={isNotificationDrawerOpen}
+            onClose={() => setNotificationDrawerOpen(false)}
+            sx={{
+                zIndex: 2,
+                width: 300,
+                '& .MuiDrawer-paper': {
+                    width: 300,
+                    boxSizing: 'border-box'
+                },
+            }}
+        >
+            <Toolbar>
+                <IconButton
+                    edge='start'
+                    color='inherit'
+                    sx={{ marginRight: 'auto' }}
+                    onClick={() => setNotificationDrawerOpen(false)}
+                >
+                    <ForwardIcon />
+                </IconButton>
+            </Toolbar>
+            <Divider />
+
         </Drawer>
     );
 
@@ -36,6 +125,7 @@ function MainLayout(props) {
                 size='large'
                 edge='start'
                 color='inherit'
+                onClick={() => setNavigationDrawerOpen(true)}
             >
                 <MenuIcon />
             </IconButton>
@@ -80,6 +170,7 @@ function MainLayout(props) {
                 size='large'
                 edge='end'
                 color='inherit'
+                onClick={() => setNotificationDrawerOpen(true)}
             >
                 <NotificationIcon />
             </IconButton>
@@ -109,6 +200,8 @@ function MainLayout(props) {
                 height: '100vh'
             }}
         >
+            {NavigationDrawer}
+            {NotificationDrawer}
             {MainAppBar}
             <Box
                 sx={{
