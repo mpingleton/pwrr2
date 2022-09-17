@@ -10,7 +10,9 @@ function PrimaryRouter() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<MainLayout element={undefined} />} />
+                <Route path="/tasks" element={<MainLayout element={undefined} />} />
+                <Route path="/projects" element={<MainLayout element={undefined} />} />
+                <Route path="/dashboard" element={<MainLayout element={undefined} />} />
             </Routes>
         </BrowserRouter>
     );

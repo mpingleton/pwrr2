@@ -22,6 +22,7 @@ import ForwardIcon from '@mui/icons-material/NavigateNext';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
 function MainLayout(props) {
+    const navigate = useNavigate();
     const [isNavigationDrawerOpen, setNavigationDrawerOpen] = useState(false);
     const [isNotificationDrawerOpen, setNotificationDrawerOpen] = useState(false);
 
@@ -54,7 +55,10 @@ function MainLayout(props) {
             <List>
                 <ListItem
                     button
-                    onClick={() => {}}
+                    onClick={() => {
+                        setNavigationDrawerOpen(false);
+                        navigate('/dashboard', { replace: true });
+                    }}
                 >
                     <ListItemIcon>
                         <ArrowCircleRightIcon />
@@ -63,7 +67,10 @@ function MainLayout(props) {
                 </ListItem>
                 <ListItem
                     button
-                    onClick={() => {}}
+                    onClick={() => {
+                        setNavigationDrawerOpen(false);
+                        navigate('/projects', { replace: true });
+                    }}
                 >
                     <ListItemIcon>
                         <ArrowCircleRightIcon />
@@ -72,7 +79,10 @@ function MainLayout(props) {
                 </ListItem>
                 <ListItem
                     button
-                    onClick={() => {}}
+                    onClick={() => {
+                        setNavigationDrawerOpen(false);
+                        navigate('/tasks', { replace: true });
+                    }}
                 >
                     <ListItemIcon>
                         <ArrowCircleRightIcon />
