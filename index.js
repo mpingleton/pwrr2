@@ -2,16 +2,17 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
+const { PrismaClient } = require('@prisma/client');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const prisma = new PrismaClient();
 
 const app = express();
 
 const init = async () => {
     // Validate environment variables.
-
-    // Connect to the database.
 
     // Start the express server.
     app.use(bodyParser.json());
@@ -25,7 +26,8 @@ init()
     .then((res) => {
         console.log('Initialization complete.');
     })
-    .catch((err) => {
+    .catch(async (err) => {
         console.log('Fatal error: ' + err);
+        await prisma.$disconnect();
         process.exit(err);
     });
