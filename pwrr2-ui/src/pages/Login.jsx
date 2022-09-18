@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import {
     Paper,
@@ -8,7 +9,19 @@ import {
     Typography,
 } from '@mui/material';
 
+import login from '../api/auth/login';
+
 function Login() {
+    const navigate = useNavigate();
+
+    const [username, setUsername] = useState('');
+    const [passphrase, setPassphrase] = useState('');
+
+    function handleLogin() {
+        login(username, passphrase)
+            .then(() => navigate('/dashboard', { replace: true }));
+    }
+
     return (
         <Paper
             sx={{
@@ -28,12 +41,16 @@ function Login() {
                     Please log in:
                 </Typography>
                 <TextField
+                    value={username}
                     variant='outlined'
                     label='Username'
+                    onChange={(event) => setUsername(event.target.value)}
                 />
                 <TextField
+                    value={passphrase}
                     variant='outlined'
                     label='Passphrase'
+                    onChange={(event) => setPassphrase(event.target.value)}
                 />
                 <Stack
                     direction="row"
@@ -41,6 +58,7 @@ function Login() {
                 >
                     <Button
                         variant="contained"
+                        onClick={handleLogin}
                     >
                         Login
                     </Button>
