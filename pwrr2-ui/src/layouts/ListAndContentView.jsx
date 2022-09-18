@@ -2,8 +2,9 @@ import React from 'react';
 
 import {
     Stack,
+    List,
+    Box,
 } from '@mui/material';
-import { Box } from '@mui/system';
 
 function ListAndContentView(props) {
     return (
@@ -19,10 +20,30 @@ function ListAndContentView(props) {
                 sx={{
                     width: '400px',
                     height: '100%',
-                    overflow: 'scroll',
                 }}
             >
-                {props.listItems}
+                <Stack
+                    direction='row'
+                    spacing={1}
+                    paddingTop={1}
+                    paddingBottom={1}
+                    sx={{
+                        width: '100%',
+                        height: 'fit-content',
+                        justifyContent: 'end',
+                    }}
+                >
+                    {props.buttonBar}
+                </Stack>
+                <List
+                    sx={{
+                        width: '100%',
+                        height: '100%',
+                        overflow: 'scroll'
+                    }}
+                >
+                    {props.list}
+                </List>
             </Stack>
             <Box
                 sx={{
