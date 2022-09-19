@@ -7,7 +7,18 @@ import {
     Stack,
 } from '@mui/material';
 
+import getProjectsInGroup from '../api/projects/getProjectsInGroup';
+
 function Projects() {
+    const [projectList, setProjectList] = useState(null);
+
+    useEffect(() => {
+        getProjectsInGroup(1).then((data) => setProjectList(data.data));
+    }, []);
+
+    if (projectList === null) {
+        return (<h1>Loading...</h1>);
+    }
 
     const buttonBar = (
         <Button
@@ -17,18 +28,17 @@ function Projects() {
         </Button>
     );
 
-    const items = [];
-    for (let i = 0; i < 100; i++) {
-        items.push((<ProjectListItem
-            title="This is a project title."
-            controlNumber="PWRR00000123"
-            status="Status"
-        />));
-    }
+    const projectListItems = projectList.map((project) => (
+        <ProjectListItem
+            title={project.title}
+            controlNumber={project.id}
+            status="Submitted"
+        />
+    ));
 
     return (
         <ListAndContentView
-            list={items}
+            list={projectListItems}
             buttonBar={buttonBar}
         />
     );
