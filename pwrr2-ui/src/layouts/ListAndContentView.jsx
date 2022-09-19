@@ -4,6 +4,7 @@ import {
     Stack,
     List,
     Box,
+    Divider,
 } from '@mui/material';
 
 function ListAndContentView(props) {
@@ -19,6 +20,7 @@ function ListAndContentView(props) {
                 direction='column'
                 sx={{
                     width: '400px',
+                    minWidth: '400px',
                     height: '100%',
                 }}
             >
@@ -45,6 +47,10 @@ function ListAndContentView(props) {
                     {props.list}
                 </List>
             </Stack>
+            <Divider
+                flexItem
+                orientation='vertical'
+            />
             <Box
                 sx={{
                     width: '100%',
