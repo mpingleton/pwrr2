@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ListAndContentView from '../layouts/ListAndContentView';
 import ProjectListItem from '../components/ProjectListItem';
+import ProjectInformationPanel from '../components/ProjectInformationPanel';
+import ProjectStagePanel from '../components/ProjectStagePanel';
 
 import {
     Button,
@@ -36,10 +38,28 @@ function Projects() {
         />
     ));
 
+    const projectContentView = (
+        <Stack
+            direction="column"
+            padding={1}
+            spacing={1}
+        >
+            <Stack
+                direction="row"
+                padding={1}
+                spacing={1}
+            >
+                <ProjectInformationPanel />
+                <ProjectStagePanel />
+            </Stack>
+        </Stack>
+    );
+
     return (
         <ListAndContentView
             list={projectListItems}
             buttonBar={buttonBar}
+            content={projectContentView}
         />
     );
 }
