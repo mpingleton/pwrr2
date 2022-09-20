@@ -13,6 +13,8 @@ function ProjectListItem(props) {
     return (
         <ListItem
             button
+            selected={props.selected}
+            onClick={props.onClick}
             sx={{
                 padding: 0,
             }}
