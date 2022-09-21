@@ -11,14 +11,13 @@ module.exports = async (data) => {
             justification: data.justification,
             proposedTechnicalSolution: data.proposedTechnicalSolution,
             taskless: data.taskless,
+            dueDate: data.dueDate,
             submittedDate: data.submittedDate,
-            validatedDate: data.validatedDate,
-            plannedDate: data.plannedDate,
-            implementedDate: data.implementedDate,
+            submittedBy: data.submittedBy,
+            completedDate: data.completedDate,
+            completedBy: data.completedBy,
             cancelledDate: data.cancelledDate,
-            validationDueDate: data.validationDueDate,
-            planningDueDate: data.planningDueDate,
-            implementationDueDate: data.implementationDueDate,
+            cancelledBy: data.cancelledBy
         },
     });
 };

@@ -1,6 +1,7 @@
 const insertProject = require('../../services/projects/insertProject');
 
 module.exports = async (req, res) => {
+    console.log(req.user);
     await insertProject({
         ownerId: req.body.ownerId,
         title: req.body.title,
@@ -9,10 +10,9 @@ module.exports = async (req, res) => {
         justification: req.body.justification,
         proposedTechnicalSolution: req.body.proposedTechnicalSolution,
         taskless: req.body.taskless,
+        dueDate: new Date(req.body.dueDate),
         submittedDate: new Date(),
-        validationDueDate: new Date(req.body.validationDueDate),
-        planningDueDate: new Date(req.body.planningDueDate),
-        implementationDueDate: new Date(req.body.implementationDueDate),
+        submittedBy: req.user.id
     });
     res.send(201);
 };

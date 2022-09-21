@@ -25,6 +25,11 @@ model User {
   userGroupAssignment UserGroupAssignment[]
   projectComment ProjectComment[]
   projectFile ProjectFile[]
+  submittedProject Project[] @relation("SubmittedProject")
+  completedProject Project[] @relation("CompletedProject")
+  cancelledProject Project[] @relation("CancelledProject")
+  startedProjectStage ProjectStage[] @relation("StartedProjectStage")
+  completedProjectStage ProjectStage[] @relation("CompletedProjectStage")
 }
 
 model Session {
@@ -88,20 +93,40 @@ model Project {
   justification String @db.VarChar(1023)
   proposedTechnicalSolution String @db.VarChar(1023)
   taskless Boolean @default(false)
+  dueDate DateTime?
   submittedDate DateTime
-  validatedDate DateTime?
-  plannedDate DateTime?
-  implementedDate DateTime?
+  submittedBy Int
+  completedDate DateTime?
+  completedBy Int?
   cancelledDate DateTime?
-  validationDueDate DateTime?
-  planningDueDate DateTime?
-  implementationDueDate DateTime?
+  cancelledBy Int?
 
   group Group @relation(fields: [ownerId], references: [id])
+  submittedByUser User @relation("SubmittedProject", fields: [submittedBy], references: [id])
+  completedByUser User? @relation("CompletedProject", fields: [completedBy], references: [id])
+  cancelledByUser User? @relation("CancelledProject", fields: [cancelledBy], references: [id])
+  projectStage ProjectStage[]
   projectComment ProjectComment[]
   projectFile ProjectFile[]
   projectContact ProjectContact[]
   groupNotification GroupNotification[]
+}
+
+model ProjectStage {
+  id Int @id @default(autoincrement())
+  projectId Int
+  description String @db.VarChar(255)
+  sequence Int
+  startByDate DateTime?
+  dueDate DateTime?
+  startedDate DateTime?
+  startedBy Int?
+  completedDate DateTime?
+  completedBy Int?
+
+  project Project @relation(fields: [projectId], references: [id])
+  startedByUser User? @relation("StartedProjectStage", fields: [startedBy], references: [id])
+  completedByUser User? @relation("CompletedProjectStage", fields: [completedBy], references: [id])
 }
 
 model ProjectComment {

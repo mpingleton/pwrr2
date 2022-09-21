@@ -11,8 +11,6 @@ module.exports = Joi.object({
         justification: Joi.string().max(1023).required(),
         proposedTechnicalSolution: Joi.string().max(1023).required(),
         taskless: Joi.boolean(),
-        validationDueDate: Joi.date(),
-        planningDueDate: Joi.date(),
-        implementationDueDate: Joi.date(),
+        dueDate: Joi.date(),
     }),
 });
