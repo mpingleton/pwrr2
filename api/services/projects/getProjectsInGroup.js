@@ -17,14 +17,13 @@ module.exports = async (groupId) => {
         justification: project.justification,
         proposedTechnicalSolution: project.proposedTechnicalSolution,
         taskless: project.taskless,
+        dueDate: project.dueDate,
         submittedDate: project.submittedDate,
-        validatedDate: project.validatedDate,
-        plannedDate: project.plannedDate,
-        implementedDate: project.implementedDate,
+        submittedBy: project.submittedBy,
+        completedDate: project.completedDate,
+        completedBy: project.completedBy,
         cancelledDate: project.cancelledDate,
-        validationDueDate: project.validationDueDate,
-        planningDueDate: project.planningDueDate,
-        implementationDueDate: project.implementationDueDate,
+        cancelledBy: project.cancelledBy
     }));
 
     return projectData;
