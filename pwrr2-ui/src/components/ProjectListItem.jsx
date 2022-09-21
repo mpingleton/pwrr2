@@ -10,6 +10,18 @@ import {
 
 function ProjectListItem(props) {
 
+    const status = () => {
+        if (props.project.completedDate !== null) {
+            return 'Completed';
+        }
+        else if (props.project.cancelledDate !== null) {
+            return 'Cancelled';
+        }
+        else {
+            return 'In Progress';
+        }
+    };
+
     return (
         <ListItem
             button
@@ -28,14 +40,14 @@ function ProjectListItem(props) {
                 }}
             >
                 <Divider />
-                <Box sx={{ overflowX: 'scroll', overflowY: 'hidden', whiteSpace: 'nowrap' }}><Typography sx={{ width: '100%' }} variant='h6'>{props.title}</Typography></Box>
+                <Box sx={{ overflowX: 'scroll', overflowY: 'hidden', whiteSpace: 'nowrap' }}><Typography sx={{ width: '100%' }} variant='h6'>{props.project.title}</Typography></Box>
                 <Stack
                     direction="row"
                     justifyContent="space-between"
                 >
-                    <Typography variant='subtitle2'>{props.controlNumber}</Typography>
+                    <Typography variant='subtitle2'>{props.project.id}</Typography>
                     <Typography variant='subtitle2'>Needs Attention</Typography>
-                    <Typography variant='subtitle2'>{props.status}</Typography>
+                    <Typography variant='subtitle2'>{status()}</Typography>
                 </Stack>
             </Stack>
         </ListItem>

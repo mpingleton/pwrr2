@@ -18,7 +18,7 @@ function Projects() {
     const [selectedProjectData, setSelectedProjectData] = useState(null);
 
     useEffect(() => {
-        getProjectsInGroup(1).then((data) => setProjectList(data.data));
+        getProjectsInGroup(2).then((data) => setProjectList(data.data));
     }, []);
 
     useEffect(() => {
@@ -42,26 +42,9 @@ function Projects() {
         </Button>
     );
 
-    const projectStatus = (project) => {
-        if (project.validatedDate !== null && project.plannedDate !== null && project.implementedDate !== null) {
-            return 'Complete';
-        }
-        else if (project.validatedDate === null) {
-            return 'Validation';
-        }
-        else if (project.plannedDate === null) {
-            return 'Planning';
-        }
-        else if (project.implementedDate === null) {
-            return 'Implementation';
-        }
-    };
-
     const projectListItems = projectList.map((project) => (
         <ProjectListItem
-            title={project.title}
-            controlNumber={project.id}
-            status={projectStatus(project)}
+            project={project}
             selected={project.id === idSelectedProject}
             onClick={() => setSelectedProject(project.id)}
         />

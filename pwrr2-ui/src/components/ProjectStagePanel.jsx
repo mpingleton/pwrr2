@@ -37,243 +37,10 @@ function ProjectStagePanel(props) {
         );
     };
 
-    const validated = () => {
-
-        const isCompleted = (
-            (props.project.validatedDate !== null)
-        );
-
-        const icon = () => {
-            if (isCompleted) {
-                return (<Done />);
-            }
-            else {
-                return (<Stream />);
-            }
-        };
-
-        const caption = () => {
-            if (isCompleted) {
-                return 'Validated';
-            }
-            else {
-                return 'Validation';
-            }
-        };
-
-        const dateComponent = () => {
-            if (isCompleted) {
-                return (
-                    <Stack
-                        direction="column"
-                        alignItems='center'
-                    >
-                        <Typography variant='subtitle2'>{new Date(props.project.validatedDate).toDateString()}</Typography>
-                    </Stack>
-                );
-            }
-            else if (props.project.validationDueDate !== null) {
-                return (
-                    <Stack
-                        direction="column"
-                        alignItems='center'
-                    >
-                        <Typography variant='subtitle2'>Due</Typography>
-                        <Typography variant='subtitle2'>{new Date(props.project.validationDueDate).toDateString()}</Typography>
-                    </Stack>
-                );
-            }
-            else {
-                return null;
-            }
-        };
-
-        return (
-            <Stack
-                direction="row"
-                spacing={1}
-                justifyContent='space-between'
-                alignItems='center'
-            >
-                {icon()}
-                <Typography variant='subtitle1'>
-                    {caption()}
-                </Typography>
-                {dateComponent()}
-            </Stack>
-        );
-    };
-
-    const planned = () => {
-
-        const isCompleted = (
-            (props.project.plannedDate !== null)
-        );
-
-        const isPending = (
-            (props.project.validatedDate === null)
-        );
-
-        const isInProgress = (
-            (props.project.validatedDate !== null) &&
-            (props.project.plannedDate === null)
-        );
-
-        const icon = () => {
-            if (isCompleted) {
-                return (<Done />);
-            }
-            else if (isPending) {
-                return (<Pending />);
-            }
-            else if (isInProgress) {
-                return (<Stream />);
-            }
-        };
-
-        const caption = () => {
-            if (isCompleted) {
-                return 'Planned';
-            }
-            else {
-                return 'Planning';
-            }
-        };
-
-        const dateComponent = () => {
-            if (isCompleted) {
-                return (
-                    <Stack
-                        direction="column"
-                        alignItems='center'
-                    >
-                        <Typography variant='subtitle2'>{new Date(props.project.plannedDate).toDateString()}</Typography>
-                    </Stack>
-                );
-            }
-            else if (props.project.planningDueDate !== null) {
-                return (
-                    <Stack
-                        direction="column"
-                        alignItems='center'
-                    >
-                        <Typography variant='subtitle2'>Due</Typography>
-                        <Typography variant='subtitle2'>{new Date(props.project.planningDueDate).toDateString()}</Typography>
-                    </Stack>
-                );
-            }
-            else {
-                return null;
-            }
-        };
-
-        return (
-            <Stack
-                direction="row"
-                spacing={1}
-                justifyContent='space-between'
-                alignItems='center'
-            >
-                {icon()}
-                <Typography variant='subtitle1'>
-                    {caption()}
-                </Typography>
-                {dateComponent()}
-            </Stack>
-        );
-    };
-
-    const implemented = () => {
-
-        const isCompleted = (
-            (props.project.implementedDate !== null)
-        );
-
-        const isPending = (
-            (props.project.validatedDate === null) ||
-            (props.project.plannedDate === null)
-        );
-
-        const isInProgress = (
-            (props.project.validatedDate !== null) &&
-            (props.project.plannedDate !== null) &&
-            (props.project.implementedDate === null)
-        );
-
-        const icon = () => {
-            if (isCompleted) {
-                return (<Done />);
-            }
-            else if (isPending) {
-                return (<Pending />);
-            }
-            else if (isInProgress) {
-                return (<Stream />);
-            }
-        };
-
-        const caption = () => {
-            if (isCompleted) {
-                return 'Implemented';
-            }
-            else {
-                return 'Implementation';
-            }
-        };
-
-        const dateComponent = () => {
-            if (isCompleted) {
-                return (
-                    <Stack
-                        direction="column"
-                        alignItems='center'
-                    >
-                        <Typography variant='subtitle2'>{new Date(props.project.implementedDate).toDateString()}</Typography>
-                    </Stack>
-                );
-            }
-            else if (props.project.implementationDueDate !== null) {
-                return (
-                    <Stack
-                        direction="column"
-                        alignItems='center'
-                    >
-                        <Typography variant='subtitle2'>Due</Typography>
-                        <Typography variant='subtitle2'>{new Date(props.project.implementationDueDate).toDateString()}</Typography>
-                    </Stack>
-                );
-            }
-            else {
-                return null;
-            }
-        };
-
-        return (
-            <Stack
-                direction="row"
-                spacing={1}
-                justifyContent='space-between'
-                alignItems='center'
-            >
-                {icon()}
-                <Typography variant='subtitle1'>
-                    {caption()}
-                </Typography>
-                {dateComponent()}
-            </Stack>
-        );
-    };
-
     const completed = () => {
 
-        const isCompleted = (
-            (props.project.validatedDate !== null) &&
-            (props.project.plannedDate !== null) &&
-            (props.project.implementedDate !== null) &&
-            (props.project.cancelledDate === null)
-        );
-
-        const isCancelled = (props.project.cancelledDate);
+        const isCompleted = (props.project.completedDate !== null);
+        const isCancelled = (props.project.cancelledDate !== null);
 
         const icon = () => {
             if (isCompleted) {
@@ -310,9 +77,84 @@ function ProjectStagePanel(props) {
                 <Typography variant='subtitle1'>
                     {caption()}
                 </Typography>
+                {isCompleted ? (
+                    <Stack
+                        direction="column"
+                        alignItems='center'
+                    >
+                        <Typography variant='subtitle2'>{new Date(props.project.completedDate).toDateString()}</Typography>
+                    </Stack>
+                ) : null}
+                {isCancelled ? (
+                    <Stack
+                        direction="column"
+                        alignItems='center'
+                    >
+                        <Typography variant='subtitle2'>{new Date(props.project.cancelledDate).toDateString()}</Typography>
+                    </Stack>
+                ) : null}
+                {!isCompleted && !isCancelled && props.project.dueDate !== null ? (
+                    <Stack
+                        direction="column"
+                        alignItems='center'
+                    >
+                        <Typography variant='subtitle2'>Due</Typography>
+                        <Typography variant='subtitle2'>{new Date(props.project.dueDate).toDateString()}</Typography>
+                    </Stack>
+                ) : null}
             </Stack>
         );
     };
+
+    const icon = (stage) => {
+        if (stage.startedDate === null) {
+            return (<Pending />);
+        }
+        else if (stage.completedDate === null) {
+            return (<Stream />);
+        }
+        else {
+            return (<Done />);
+        }
+    };
+
+    const dateIndicator = (stage) => {
+        console.log(stage);
+        if (stage.completedDate !== null) {
+            return (
+                <Stack
+                    direction="column"
+                    alignItems='center'
+                >
+                    <Typography variant='subtitle2'>{new Date(stage.completedDate).toDateString()}</Typography>
+                </Stack>
+            );
+        }
+        else if (stage.completedDate === null && stage.dueDate !== null) {
+            return (
+                <Stack
+                    direction="column"
+                    alignItems='center'
+                >
+                    <Typography variant='subtitle2'>Due</Typography>
+                    <Typography variant='subtitle2'>{new Date(stage.dueDate).toDateString()}</Typography>
+                </Stack>
+            );            
+        }
+    };
+
+    const stageComponents = props.project.stages.map((stage) => [(
+        <Stack
+            direction="row"
+            spacing={1}
+            justifyContent='space-between'
+            alignItems='center'
+        >
+            {icon(stage)}
+            <Typography variant='subtitle1'>{stage.description}</Typography>
+            {dateIndicator(stage)}
+        </Stack>
+    ), (<Divider />)]);
 
     return (
         <Paper
@@ -353,14 +195,8 @@ function ProjectStagePanel(props) {
                 <Divider />
                 {submitted()}
                 <Divider />
-                {validated()}
-                <Divider />
-                {planned()}
-                <Divider />
-                {implemented()}
-                <Divider />
+                {stageComponents}
                 {completed()}
-                <Divider />
             </Stack>
         </Paper>
     );
