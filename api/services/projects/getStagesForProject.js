@@ -13,7 +13,6 @@ module.exports = async (projectId) => {
         projectId: stage.projectId,
         description: stage.description,
         sequence: stage.sequence,
-        startByDate: stage.startByDate,
         dueDate: stage.dueDate,
         startedDate: stage.startedDate,
         startedBy: stage.startedBy,

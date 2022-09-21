@@ -117,7 +117,6 @@ model ProjectStage {
   projectId Int
   description String @db.VarChar(255)
   sequence Int
-  startByDate DateTime?
   dueDate DateTime?
   startedDate DateTime?
   startedBy Int?
