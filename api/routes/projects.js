@@ -10,5 +10,6 @@ const router = express.Router();
 
 router.get('/id/:projectId', session(), validator(projectsValidators.getProjectById), projectsHandlers.getProjectById);
 router.get('/in/group/:groupId', session(), validator(projectsValidators.getProjectsInGroup), projectsHandlers.getProjectsInGroup);
+router.put('/', session(), validator(projectsValidators.createProject), projectsHandlers.createProject);
 
 module.exports = router;
