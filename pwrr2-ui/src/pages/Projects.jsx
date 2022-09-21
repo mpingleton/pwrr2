@@ -42,11 +42,26 @@ function Projects() {
         </Button>
     );
 
+    const projectStatus = (project) => {
+        if (project.validatedDate !== null && project.plannedDate !== null && project.implementedDate !== null) {
+            return 'Complete';
+        }
+        else if (project.validatedDate === null) {
+            return 'Validation';
+        }
+        else if (project.plannedDate === null) {
+            return 'Planning';
+        }
+        else if (project.implementedDate === null) {
+            return 'Implementation';
+        }
+    };
+
     const projectListItems = projectList.map((project) => (
         <ProjectListItem
             title={project.title}
             controlNumber={project.id}
-            status="Submitted"
+            status={projectStatus(project)}
             selected={project.id === idSelectedProject}
             onClick={() => setSelectedProject(project.id)}
         />
