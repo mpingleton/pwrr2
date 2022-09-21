@@ -8,7 +8,7 @@ const validate = (schema) => async (req, res, nxt) => {
     });
 
     if (result.error) {
-        res.send(400);
+        res.send(400, result.error);
     } else {
         nxt();
     }
