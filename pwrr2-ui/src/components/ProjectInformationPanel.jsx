@@ -28,23 +28,29 @@ function ProjectInformationPanel(props) {
                 <Divider />
                 <TextField
                     InputProps={{ readOnly: true }}
-                    label="Requirement"
-                    value={props.project.requirement}
-                />
-                <TextField
-                    InputProps={{ readOnly: true }}
                     label="Mission/System Supported"
                     value={props.project.supportsMissionSystem}
                 />
                 <TextField
                     InputProps={{ readOnly: true }}
+                    label="Requirement"
+                    value={props.project.requirement}
+                    multiline
+                    rows={4}
+                />
+                <TextField
+                    InputProps={{ readOnly: true }}
                     label="Justification"
                     value={props.project.justification}
+                    multiline
+                    rows={4}
                 />
                 <TextField
                     InputProps={{ readOnly: true }}
                     label="Proposed Technical Solution"
                     value={props.project.proposedTechnicalSolution}
+                    multiline
+                    rows={4}
                 />
             </Stack>
         </Paper>
