@@ -119,7 +119,6 @@ function ProjectStagePanel(props) {
     };
 
     const dateIndicator = (stage) => {
-        console.log(stage);
         if (stage.completedDate !== null) {
             return (
                 <Stack
