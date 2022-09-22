@@ -10,7 +10,7 @@ export default async (data) => {
             'Authorization': `Bearer ${cookies.get('accessToken')}`
         },
         body: JSON.stringify(data),
-    }).then((dat) => data.json());
+    }).then((data) => data.json());
 
     return res;
 };
