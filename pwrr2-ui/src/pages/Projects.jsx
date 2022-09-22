@@ -7,6 +7,7 @@ import ProjectStagePanel from '../components/ProjectStagePanel';
 import {
     Button,
     Stack,
+    Box,
 } from '@mui/material';
 
 import getProjectsInGroup from '../api/projects/getProjectsInGroup';
@@ -61,8 +62,8 @@ function Projects() {
                 padding={1}
                 spacing={1}
             >
-                <ProjectInformationPanel project={selectedProjectData} />
-                <ProjectStagePanel project={selectedProjectData} />
+                <Box sx={{ width: '60%' }}><ProjectInformationPanel project={selectedProjectData} /></Box>
+                <Box sx={{ width: '40%' }}><ProjectStagePanel project={selectedProjectData} /></Box>
             </Stack>
         </Stack>
     );

@@ -11,12 +11,7 @@ import {
 function ProjectInformationPanel(props) {
     return (
         <Paper
-            sx={{
-                width: '100%',
-                height: '100%',
-                boxSizing: "border-box",
-                padding: 2,
-            }}
+            sx={{ padding: 2 }}
         >
             <Stack
                 direction="column"

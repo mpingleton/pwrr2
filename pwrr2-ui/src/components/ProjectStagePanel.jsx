@@ -158,12 +158,7 @@ function ProjectStagePanel(props) {
 
     return (
         <Paper
-            sx={{
-                width: '50%',
-                height: '100%',
-                boxSizing: 'border-box',
-                padding: 2,
-            }}
+            sx={{ padding: 2 }}
         >
             <Stack
                 direction="column"
