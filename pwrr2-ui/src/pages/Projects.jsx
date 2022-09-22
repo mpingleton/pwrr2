@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ListAndContentView from '../layouts/ListAndContentView';
 import ProjectListItem from '../components/ProjectListItem';
 import ProjectInformationPanel from '../components/ProjectInformationPanel';
@@ -14,6 +15,7 @@ import getProjectsInGroup from '../api/projects/getProjectsInGroup';
 import getProjectById from '../api/projects/getProjectById';
 
 function Projects() {
+    const navigate = useNavigate();
     const [projectList, setProjectList] = useState(null);
     const [idSelectedProject, setSelectedProject] = useState(3);
     const [selectedProjectData, setSelectedProjectData] = useState(null);
@@ -38,6 +40,7 @@ function Projects() {
     const buttonBar = (
         <Button
             variant="contained"
+            onClick={() => navigate('/projects/new', { replace: true })}
         >
             New
         </Button>
