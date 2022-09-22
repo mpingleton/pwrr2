@@ -9,7 +9,7 @@ import {
     Button,
 } from '@mui/material';
 
-
+import createProject from '../api/projects/createProject';
 
 function NewProject(props) {
     const [title, setTitle] = useState('');
@@ -18,6 +18,19 @@ function NewProject(props) {
     const [justification, setJustification] = useState('');
     const [solution, setSolution] = useState('');
     const [stages, setStages] = useState([]);
+
+    const submitProject = () => {
+        createProject({
+            ownerId: 2,
+            title: title,
+            supportsMissionSystem: supports,
+            requirement: requirement,
+            justification: justification,
+            proposedTechnicalSolution: solution,
+            taskless: false,
+            dueDate: new Date(),
+        }).then(() => {});
+    };
 
     return (
         <Stack
@@ -49,6 +62,7 @@ function NewProject(props) {
                     </Button>
                     <Button
                         variant="contained"
+                        onClick={submitProject}
                     >
                         Create
                     </Button>
