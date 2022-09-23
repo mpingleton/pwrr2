@@ -2,7 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 module.exports = async (data) => {
-    await prisma.project.create({
+    const returnData = await prisma.project.create({
         data: {
             ownerId: data.ownerId,
             title: data.title,
@@ -20,4 +20,24 @@ module.exports = async (data) => {
             cancelledBy: data.cancelledBy
         },
     });
+
+    const projectData = {
+        id: returnData.id,
+        ownerId: returnData.ownerId,
+        title: returnData.title,
+        supportsMissionSystem: returnData.supportsMissionSystem,
+        requirement: returnData.requirement,
+        justification: returnData.justification,
+        proposedTechnicalSolution: returnData.proposedTechnicalSolution,
+        taskless: returnData.taskless,
+        dueDate: returnData.dueDate,
+        submittedDate: returnData.submittedDate,
+        submittedBy: returnData.submittedBy,
+        completedDate: returnData.completedDate,
+        completedBy: returnData.completedBy,
+        cancelledDate: returnData.cancelledDate,
+        cancelledBy: returnData.cancelledBy
+    };
+    
+    return projectData;
 };

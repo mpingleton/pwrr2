@@ -20,6 +20,10 @@ function NewProject(props) {
     const [stages, setStages] = useState([]);
 
     const submitProject = () => {
+        for (let i = 0; i < stages.length; i++) {
+            stages[i].sequence = i + 1;
+        }
+
         createProject({
             ownerId: 2,
             title: title,
@@ -29,6 +33,7 @@ function NewProject(props) {
             proposedTechnicalSolution: solution,
             taskless: false,
             dueDate: new Date(),
+            stages: stages,
         }).then(() => {});
     };
 

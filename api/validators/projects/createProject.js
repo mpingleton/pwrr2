@@ -12,5 +12,10 @@ module.exports = Joi.object({
         proposedTechnicalSolution: Joi.string().max(1023).required(),
         taskless: Joi.boolean(),
         dueDate: Joi.date(),
+        stages: Joi.array().items(Joi.object({
+            description: Joi.string().max(255).required(),
+            dueDate: Joi.date(),
+            sequence: Joi.number().integer().required(),
+        })),
     }),
 });
