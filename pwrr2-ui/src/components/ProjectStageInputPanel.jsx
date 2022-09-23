@@ -18,6 +18,8 @@ function ProjectStageInputPanel(props) {
     const addStage = () => {
         const concatStage = props.stages.concat({ description: stageDesc, dueDate: stageDue });
         props.setStages(concatStage);
+        setStageDesc('');
+        setStageDue(new Date());
     };
 
     const currentStageComponents = props.stages.map((stage) => (

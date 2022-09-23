@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ProjectInformationInputPanel from '../components/ProjectInformationInputPanel';
 import ProjectStageInputPanel from '../components/ProjectStageInputPanel';
 
@@ -12,12 +13,22 @@ import {
 import createProject from '../api/projects/createProject';
 
 function NewProject(props) {
+    const navigate = useNavigate();
     const [title, setTitle] = useState('');
     const [supports, setSupports] = useState('');
     const [requirement, setRequirement] = useState('');
     const [justification, setJustification] = useState('');
     const [solution, setSolution] = useState('');
     const [stages, setStages] = useState([]);
+
+    const newProject = () => {
+        setTitle('');
+        setSupports('');
+        setRequirement('');
+        setJustification('');
+        setSolution('');
+        setStages([]);
+    };
 
     const submitProject = () => {
         for (let i = 0; i < stages.length; i++) {
@@ -57,11 +68,13 @@ function NewProject(props) {
                 >
                     <Button
                         variant="contained"
+                        onClick={() => navigate('/projects', { replace: true })}
                     >
                         Back to Projects
                     </Button>
                     <Button
                         variant="contained"
+                        onClick={newProject}
                     >
                         New
                     </Button>
