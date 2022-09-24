@@ -59,7 +59,6 @@ function Projects() {
         <Stack
             direction="column"
             padding={1}
-            spacing={1}
         >
             <Stack
                 direction="row"
