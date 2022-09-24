@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProjectInformationInputPanel from '../components/ProjectInformationInputPanel';
 import ProjectStageInputPanel from '../components/ProjectStageInputPanel';
+import ContactPanel from '../components/ContactPanel';
 
 import {
     Stack,
@@ -20,6 +21,7 @@ function NewProject(props) {
     const [justification, setJustification] = useState('');
     const [solution, setSolution] = useState('');
     const [stages, setStages] = useState([]);
+    const [contacts, setContacts] = useState([]);
 
     const newProject = () => {
         setTitle('');
@@ -35,6 +37,8 @@ function NewProject(props) {
             stages[i].sequence = i + 1;
         }
 
+        const contactIds = contacts.map((contact) => contact.id);
+
         createProject({
             ownerId: 2,
             title: title,
@@ -45,6 +49,7 @@ function NewProject(props) {
             taskless: false,
             dueDate: new Date(),
             stages: stages,
+            contacts: contactIds,
         }).then(() => {});
     };
 
@@ -105,10 +110,19 @@ function NewProject(props) {
                     />
                 </Box>
                 <Box sx={{ width: '35%' }}>
-                    <ProjectStageInputPanel
-                        stages={stages}
-                        setStages={setStages}
-                    />
+                    <Stack
+                        direction="column"
+                        spacing={1}
+                    >
+                        <ProjectStageInputPanel
+                            stages={stages}
+                            setStages={setStages}
+                        />
+                        <ContactPanel
+                            contacts={contacts}
+                            setContacts={setContacts}
+                        />
+                    </Stack>
                 </Box>
             </Stack>
         </Stack>
