@@ -37,6 +37,7 @@ function ListAndContentView(props) {
                 >
                     {props.buttonBar}
                 </Stack>
+                <Divider />
                 <List
                     sx={{
                         width: '100%',
