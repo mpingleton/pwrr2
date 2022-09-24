@@ -4,6 +4,7 @@ import {
     Paper,
     Stack,
     Typography,
+    Divider,
 } from '@mui/material';
 
 function ProjectContactsPanel(props) {
@@ -31,6 +32,8 @@ function ProjectContactsPanel(props) {
                 direction="column"
                 spacing={2}
             >
+                <Typography variant="h5">Contacts</Typography>
+                <Divider />
                 {contactComponents}
             </Stack>
         </Paper>

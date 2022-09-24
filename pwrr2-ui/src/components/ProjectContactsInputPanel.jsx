@@ -46,6 +46,8 @@ function ContactPanel(props) {
                 direction="column"
                 spacing={2}
             >
+                <Typography variant="h5">Contacts</Typography>
+                <Divider />
                 {contactRows}
                 <Stack
                     direction="row"

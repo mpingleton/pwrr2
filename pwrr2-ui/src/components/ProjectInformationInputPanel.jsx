@@ -4,6 +4,8 @@ import {
     Paper,
     Stack,
     TextField,
+    Divider,
+    Typography
 } from '@mui/material';
 
 function ProjectInformationInputPanel(props) {
@@ -17,6 +19,8 @@ function ProjectInformationInputPanel(props) {
                 direction="column"
                 spacing={2}
             >
+                <Typography variant="h5">Project Information</Typography>
+                <Divider />
                 <TextField
                     label="Title"
                     value={props.title}

@@ -30,6 +30,7 @@ function NewProject(props) {
         setJustification('');
         setSolution('');
         setStages([]);
+        setContacts([]);
     };
 
     const submitProject = () => {

@@ -163,6 +163,8 @@ function ProjectStagePanel(props) {
                 direction="column"
                 spacing={1}
             >
+                <Typography variant="h5">Stages and Status</Typography>
+                <Divider />
                 <Button
                     variant='contained'
                     sx={{ width: '100%' }}

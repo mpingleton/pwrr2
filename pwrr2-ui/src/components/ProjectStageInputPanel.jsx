@@ -6,6 +6,7 @@ import {
     TextField,
     Typography,
     Button,
+    Divider,
 } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
@@ -45,6 +46,8 @@ function ProjectStageInputPanel(props) {
                 direction="column"
                 spacing={2}
             >
+                <Typography variant="h5">Stages</Typography>
+                <Divider />
                 {currentStageComponents}
                 <Stack
                     direction="row"
