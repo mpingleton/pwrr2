@@ -5,24 +5,19 @@ import {
     Stack,
     Typography,
     Divider,
+    Box,
 } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
 
 function ProjectContactsPanel(props) {
 
-    const contactComponents = props.project.contacts.map((contact) => (
-        <Stack
-            direction="row"
-            spacing={1}
-            justifyContent="space-evenly"
-            alignItems="center"
-        >
-            <Typography variant="subtitle2">{contact.rank}</Typography>
-            <Typography variant="subtitle2">{contact.firstName}</Typography>
-            <Typography variant="subtitle2">{contact.lastName}</Typography>
-            <Typography variant="subtitle2">{contact.phone}</Typography>
-            <Typography variant="subtitle2">{contact.email}</Typography>
-        </Stack>
-    ));
+    const columns = [
+        { field: 'rank', headerName: 'Rank', width: 100 },
+        { field: 'firstName', headerName: 'First Name', width: 120 },
+        { field: 'lastName', headerName: 'Last Name', width: 120 },
+        { field: 'phone', headerName: 'Phone', width: 120 },
+        { field: 'email', headerName: 'Email', width: 200 },
+    ];
 
     return (
         <Paper
@@ -34,7 +29,14 @@ function ProjectContactsPanel(props) {
             >
                 <Typography variant="h5">Contacts</Typography>
                 <Divider />
-                {contactComponents}
+                <Box sx={{ height: '300px' }}>
+                    <DataGrid
+                        rows={props.project.contacts}
+                        columns={columns}
+                        pageSize={5}
+                        rowsPerPageOptions={[5]}
+                    />
+                </Box>
             </Stack>
         </Paper>
     );
