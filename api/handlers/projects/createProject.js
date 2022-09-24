@@ -1,5 +1,6 @@
 const insertProject = require('../../services/projects/insertProject');
 const insertStages = require('../../services/projects/insertStages');
+const insertProjectContacts = require('../../services/projects/insertProjectContacts');
 
 module.exports = async (req, res) => {
     const returnData = await insertProject({
@@ -15,7 +16,8 @@ module.exports = async (req, res) => {
         submittedBy: req.user.id
     });
 
-    returnData.stages = await insertStages(returnData.id, req.body.stages);
+    await insertStages(returnData.id, req.body.stages);
+    await insertProjectContacts(returnData.id, req.body.contacts);
 
     res.send(201, returnData);
 };
