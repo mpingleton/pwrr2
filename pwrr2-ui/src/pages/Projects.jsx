@@ -4,6 +4,7 @@ import ListAndContentView from '../layouts/ListAndContentView';
 import ProjectListItem from '../components/ProjectListItem';
 import ProjectInformationPanel from '../components/ProjectInformationPanel';
 import ProjectStagePanel from '../components/ProjectStagePanel';
+import ProjectContactsPanel from '../components/ProjectContactsPanel';
 
 import {
     Button,
@@ -67,6 +68,14 @@ function Projects() {
             >
                 <Box sx={{ width: '60%' }}><ProjectInformationPanel project={selectedProjectData} /></Box>
                 <Box sx={{ width: '40%' }}><ProjectStagePanel project={selectedProjectData} /></Box>
+            </Stack>
+            <Stack
+                direction="row"
+                padding={1}
+                spacing={1}
+            >
+                <Box sx={{ width: '60%' }}><ProjectContactsPanel project={selectedProjectData} /></Box>
+                <Box sx={{ width: '40%' }}></Box>
             </Stack>
         </Stack>
     );

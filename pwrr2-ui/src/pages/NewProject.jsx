@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProjectInformationInputPanel from '../components/ProjectInformationInputPanel';
 import ProjectStageInputPanel from '../components/ProjectStageInputPanel';
-import ContactPanel from '../components/ContactPanel';
+import ProjectContactsInputPanel from '../components/ProjectContactsInputPanel';
 
 import {
     Stack,
@@ -118,7 +118,7 @@ function NewProject(props) {
                             stages={stages}
                             setStages={setStages}
                         />
-                        <ContactPanel
+                        <ProjectContactsInputPanel
                             contacts={contacts}
                             setContacts={setContacts}
                         />
