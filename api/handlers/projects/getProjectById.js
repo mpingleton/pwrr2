@@ -2,6 +2,8 @@ const getContactsForProject = require('../../services/projects/getContactsForPro
 const getProjectById = require('../../services/projects/getProjectById');
 const getStagesForProject = require('../../services/projects/getStagesForProject');
 const getContactById = require('../../services/contacts/getContactById');
+const getGroupById = require('../../services/groups/getGroupById');
+const getOrganizationById = require('../../services/organizations/getOrganizationById');
 
 module.exports = async (req, res) => {
     const projectData = await getProjectById(Number.parseInt(req.params.projectId));
@@ -20,6 +22,9 @@ module.exports = async (req, res) => {
 
     const contactIds = await getContactsForProject(projectData.id);
     projectData.contacts = await Promise.all(contactIds.map((contact) => getContactById(contact.contactId)));
+    
+    projectData.ownerData = await getGroupById(projectData.ownerId);
+    projectData.ownerData.organizationData = await getOrganizationById(projectData.ownerData.organizationId);
 
     res.send(200, projectData);
 };

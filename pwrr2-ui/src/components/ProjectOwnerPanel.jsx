@@ -19,7 +19,20 @@ function ProjectOwnerPanel(props) {
             >
                 <Typography variant="h5">Owner Information</Typography>
                 <Divider />
-                
+                <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                >
+                    <Typography>Organization:</Typography>
+                    <Typography>{props.project.ownerData.organizationData.name}</Typography>
+                </Stack>
+                <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                >
+                    <Typography>Group:</Typography>
+                    <Typography>{props.project.ownerData.name}</Typography>
+                </Stack>
             </Stack>
         </Paper>
     );
