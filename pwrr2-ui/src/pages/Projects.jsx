@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ListAndContentView from '../layouts/ListAndContentView';
 import ProjectListItem from '../components/ProjectListItem';
 import ProjectInformationPanel from '../components/ProjectInformationPanel';
+import ProjectOwnerPanel from '../components/ProjectOwnerPanel';
 import ProjectStagePanel from '../components/ProjectStagePanel';
 import ProjectContactsPanel from '../components/ProjectContactsPanel';
 
@@ -74,7 +75,7 @@ function Projects() {
                 spacing={1}
             >
                 <Box sx={{ width: '60%' }}><ProjectContactsPanel project={selectedProjectData} /></Box>
-                <Box sx={{ width: '40%' }}></Box>
+                <Box sx={{ width: '40%' }}><ProjectOwnerPanel project={selectedProjectData} /></Box>
             </Stack>
         </Stack>
     );
