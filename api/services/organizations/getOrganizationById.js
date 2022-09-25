@@ -1,15 +1,18 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
+const parseIdentifier = require('../identifiers/parseIdentifier');
+const organizationIdentifier = require('../identifiers/organizationIdentifier');
+
 module.exports = async (organizationId) => {
     const data = await prisma.organization.findUnique({
         where: {
-            id: organizationId,
+            id: parseIdentifier(organizationId),
         },
     });
 
     const organizationData = {
-        id: data.id,
+        id: organizationIdentifier(data.id),
         name: data.name,
     };
 
