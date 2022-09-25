@@ -1,15 +1,18 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
+const parseIdentifier = require('../identifiers/parseIdentifier');
+const projectIdentifier = require('../identifiers/projectIdentifier');
+
 module.exports = async (projectId) => {
     const data = await prisma.project.findUnique({
         where: {
-            id: projectId,
+            id: parseIdentifier(projectId),
         },
     });
 
     const projectData = {
-        id: data.id,
+        id: projectIdentifier(data.id),
         ownerId: data.ownerId,
         title: data.title,
         supportsMissionSystem: data.supportsMissionSystem,

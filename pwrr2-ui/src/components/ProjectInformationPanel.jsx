@@ -23,7 +23,7 @@ function ProjectInformationPanel(props) {
                     alignItems="center"
                 >
                     <Typography variant='h5'>{props.project.title}</Typography>
-                    <Typography variant='subtitle1'>PWRR000000123</Typography>
+                    <Typography variant='subtitle1'>{props.project.id}</Typography>
                 </Stack>
                 <Divider />
                 <TextField

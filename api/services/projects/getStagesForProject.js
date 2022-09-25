@@ -1,16 +1,19 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
+const parseIdentifier = require('../identifiers/parseIdentifier');
+const projectIdentifier = require('../identifiers/projectIdentifier');
+
 module.exports = async (projectId) => {
     const data = await prisma.projectStage.findMany({
         where: {
-            projectId: projectId,
+            projectId: parseIdentifier(projectId),
         },
     });
 
     const stageData = data.map((stage) => ({
         id: stage.id,
-        projectId: stage.projectId,
+        projectId: projectIdentifier(stage.projectId),
         description: stage.description,
         sequence: stage.sequence,
         dueDate: stage.dueDate,

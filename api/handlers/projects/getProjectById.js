@@ -6,7 +6,7 @@ const getGroupById = require('../../services/groups/getGroupById');
 const getOrganizationById = require('../../services/organizations/getOrganizationById');
 
 module.exports = async (req, res) => {
-    const projectData = await getProjectById(Number.parseInt(req.params.projectId));
+    const projectData = await getProjectById(req.params.projectId);
 
     projectData.stages = await getStagesForProject(projectData.id);
     projectData.stages.sort((a, b) => {

@@ -1,6 +1,8 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
+const projectIdentifier = require('../identifiers/projectIdentifier');
+
 module.exports = async (data) => {
     const returnData = await prisma.project.create({
         data: {
@@ -22,7 +24,7 @@ module.exports = async (data) => {
     });
 
     const projectData = {
-        id: returnData.id,
+        id: projectIdentifier(returnData.id),
         ownerId: returnData.ownerId,
         title: returnData.title,
         supportsMissionSystem: returnData.supportsMissionSystem,

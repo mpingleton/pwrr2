@@ -19,7 +19,7 @@ import getProjectById from '../api/projects/getProjectById';
 function Projects() {
     const navigate = useNavigate();
     const [projectList, setProjectList] = useState(null);
-    const [idSelectedProject, setSelectedProject] = useState(3);
+    const [idSelectedProject, setSelectedProject] = useState('PWRP000000000017');
     const [selectedProjectData, setSelectedProjectData] = useState(null);
 
     useEffect(() => {

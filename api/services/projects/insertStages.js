@@ -1,10 +1,13 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
+const parseIdentifier = require('../identifiers/parseIdentifier');
+const projectIdentifier = require('../identifiers/projectIdentifier');
+
 module.exports = async (projectId, data) => {
     const promises = data.map((stage) => prisma.projectStage.create({
         data: {
-            projectId: projectId,
+            projectId: parseIdentifier(projectId),
             description: stage.description,
             sequence: stage.sequence,
             dueDate: stage.dueDate,
@@ -15,7 +18,7 @@ module.exports = async (projectId, data) => {
 
     const stageData = returnData.map((stage) => ({
         id: stage.id,
-        projectId: stage.projectId,
+        projectId: projectIdentifier(stage.projectId),
         description: stage.description,
         sequence: stage.sequence,
         dueDate: stage.dueDate,
