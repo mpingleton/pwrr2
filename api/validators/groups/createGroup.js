@@ -5,6 +5,6 @@ module.exports = Joi.object({
     query: Joi.object({}),
     body: Joi.object({
         name: Joi.string().max(255).required(),
-        organizationId: Joi.number().integer().required(),
+        organizationId: Joi.string().required(),
     }),
 });
