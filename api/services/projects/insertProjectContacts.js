@@ -3,12 +3,13 @@ const prisma = new PrismaClient();
 
 const parseIdentifier = require('../identifiers/parseIdentifier');
 const projectIdentifier = require('../identifiers/projectIdentifier');
+const contactIdentifier = require('../identifiers/contactIdentifier');
 
 module.exports = async (projectId, data) => {
     const promises = data.map((contact) => prisma.projectContact.create({
         data: {
             projectId: parseIdentifier(projectId),
-            contactId: contact
+            contactId: parseIdentifier(contact),
         },
     }));
 
@@ -16,7 +17,7 @@ module.exports = async (projectId, data) => {
 
     const projectContactData = returnData.map((contact) => ({
         projectId: projectIdentifier(contact.projectId),
-        contactId: contact.contactId,
+        contactId: contactIdentifier(contact.contactId),
     }));
 
     return projectContactData;

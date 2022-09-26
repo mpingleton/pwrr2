@@ -17,6 +17,6 @@ module.exports = Joi.object({
             dueDate: Joi.date(),
             sequence: Joi.number().integer().required(),
         })),
-        contacts: Joi.array().items(Joi.number().integer()),
+        contacts: Joi.array().items(Joi.string()),
     }),
 });

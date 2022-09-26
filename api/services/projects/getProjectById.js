@@ -3,6 +3,7 @@ const prisma = new PrismaClient();
 
 const parseIdentifier = require('../identifiers/parseIdentifier');
 const projectIdentifier = require('../identifiers/projectIdentifier');
+const groupIdentifier = require('../identifiers/groupIdentifier');
 
 module.exports = async (projectId) => {
     const data = await prisma.project.findUnique({
@@ -13,7 +14,7 @@ module.exports = async (projectId) => {
 
     const projectData = {
         id: projectIdentifier(data.id),
-        ownerId: data.ownerId,
+        ownerId: groupIdentifier(data.ownerId),
         title: data.title,
         supportsMissionSystem: data.supportsMissionSystem,
         requirement: data.requirement,
