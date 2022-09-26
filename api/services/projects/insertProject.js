@@ -1,12 +1,14 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
+const parseIdentifier = require('../identifiers/parseIdentifier');
+const groupIdentifier = require('../identifiers/groupIdentifier');
 const projectIdentifier = require('../identifiers/projectIdentifier');
 
 module.exports = async (data) => {
     const returnData = await prisma.project.create({
         data: {
-            ownerId: data.ownerId,
+            ownerId: parseIdentifier(data.ownerId),
             title: data.title,
             supportsMissionSystem: data.supportsMissionSystem,
             requirement: data.requirement,
@@ -25,7 +27,7 @@ module.exports = async (data) => {
 
     const projectData = {
         id: projectIdentifier(returnData.id),
-        ownerId: returnData.ownerId,
+        ownerId: groupIdentifier(returnData.ownerId),
         title: returnData.title,
         supportsMissionSystem: returnData.supportsMissionSystem,
         requirement: returnData.requirement,

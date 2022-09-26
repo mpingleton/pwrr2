@@ -1,18 +1,20 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
+const parseIdentifier = require('../identifiers/parseIdentifier');
 const projectIdentifier = require('../identifiers/projectIdentifier');
+const groupIdentifier = require('../identifiers/groupIdentifier');
 
 module.exports = async (groupId) => {
     const data = await prisma.project.findMany({
         where: {
-            ownerId: groupId,
+            ownerId: parseIdentifier(groupId),
         },
     });
 
     const projectData = data.map((project) => ({
         id: projectIdentifier(project.id),
-        ownerId: project.ownerId,
+        ownerId: groupIdentifier(project.ownerId),
         title: project.title,
         supportsMissionSystem: project.supportsMissionSystem,
         requirement: project.requirement,

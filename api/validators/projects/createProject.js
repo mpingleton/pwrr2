@@ -4,7 +4,7 @@ module.exports = Joi.object({
     params: Joi.object({}),
     query: Joi.object({}),
     body: Joi.object({
-        ownerId: Joi.number().integer().required(),
+        ownerId: Joi.string().required(),
         title: Joi.string().max(255).required(),
         supportsMissionSystem: Joi.string().max(255).required(),
         requirement: Joi.string().max(1023).required(),
