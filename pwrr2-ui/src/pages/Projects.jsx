@@ -23,7 +23,7 @@ function Projects() {
     const [selectedProjectData, setSelectedProjectData] = useState(null);
 
     useEffect(() => {
-        getProjectsInGroup(2).then((data) => setProjectList(data.data));
+        getProjectsInGroup('PWRG000000000002').then((data) => setProjectList(data.data));
     }, []);
 
     useEffect(() => {

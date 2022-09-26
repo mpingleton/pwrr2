@@ -41,7 +41,7 @@ function NewProject(props) {
         const contactIds = contacts.map((contact) => contact.id);
 
         createProject({
-            ownerId: 2,
+            ownerId: 'PWRG000000000002',
             title: title,
             supportsMissionSystem: supports,
             requirement: requirement,
