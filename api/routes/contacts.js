@@ -8,6 +8,7 @@ const contactsValidators = require('../validators/contacts');
 
 const router = express.Router();
 
+router.get('/', session(), contactsHandlers.getContacts);
 router.get('/id/:contactId', session(), validator(contactsValidators.getContactById), contactsHandlers.getContactById);
 router.put('/', session(), validator(contactsValidators.createContact), contactsHandlers.createContact);
 
