@@ -10,9 +10,10 @@ import {
 } from '@mui/material';
 
 import getContactById from '../api/contacts/getContactById';
+import AddContactDialog from '../dialogs/AddContactDialog';
 
 function ContactPanel(props) {
-    const [newContactId, setNewContactId] = useState('');
+    const [isAddContactDialogOpen, setAddContactDialogOpen] = useState(false);
 
     const contactRows = props.contacts.map((contact) => (
         <Stack
@@ -27,13 +28,13 @@ function ContactPanel(props) {
         </Stack>
     ));
 
-    const addContact = () => {
-        getContactById(newContactId)
+    const addContact = (contactId) => {
+        getContactById(contactId)
             .then((response) => {
                 const newContactList = props.contacts.concat(response);
                 props.setContacts(newContactList);
-                setNewContactId('');
             });
+        setAddContactDialogOpen(false);
     };
 
     return (
@@ -42,6 +43,11 @@ function ContactPanel(props) {
                 padding: 2,
             }}
         >
+            <AddContactDialog
+                open={isAddContactDialogOpen}
+                onClose={() => setAddContactDialogOpen(false)}
+                onSelectedContact={addContact}
+            />
             <Stack
                 direction="column"
                 spacing={2}
@@ -53,16 +59,11 @@ function ContactPanel(props) {
                     direction="row"
                     spacing={1}
                 >
-                    <TextField
-                        value={newContactId}
-                        onChange={(event) => setNewContactId(event.target.value)}
-                        sx={{ width: '100%' }}
-                    />
                     <Button
                         variant="contained"
-                        onClick={addContact}
+                        onClick={() => setAddContactDialogOpen(true)}
                     >
-                        Add
+                        Search
                     </Button>
                 </Stack>
             </Stack>
