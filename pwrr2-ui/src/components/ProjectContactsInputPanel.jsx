@@ -6,7 +6,6 @@ import {
     Stack,
     Divider,
     Typography,
-    TextField,
 } from '@mui/material';
 
 import getContactById from '../api/contacts/getContactById';

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ProjectInformationInputPanel from '../components/ProjectInformationInputPanel';
 import ProjectStageInputPanel from '../components/ProjectStageInputPanel';
 import ProjectContactsInputPanel from '../components/ProjectContactsInputPanel';
+import ProjectOwnerInputPanel from '../components/ProjectOwnerInputPanel';
 
 import {
     Stack,
@@ -21,6 +22,7 @@ function NewProject(props) {
     const [justification, setJustification] = useState('');
     const [solution, setSolution] = useState('');
     const [stages, setStages] = useState([]);
+    const [ownerId, setOwnerId] = useState('');
     const [contacts, setContacts] = useState([]);
 
     const newProject = () => {
@@ -41,7 +43,7 @@ function NewProject(props) {
         const contactIds = contacts.map((contact) => contact.id);
 
         createProject({
-            ownerId: 'PWRG000000000002',
+            ownerId: ownerId,
             title: title,
             supportsMissionSystem: supports,
             requirement: requirement,
@@ -118,6 +120,10 @@ function NewProject(props) {
                         <ProjectStageInputPanel
                             stages={stages}
                             setStages={setStages}
+                        />
+                        <ProjectOwnerInputPanel
+                            ownerId={ownerId}
+                            setOwnerId={setOwnerId}
                         />
                         <ProjectContactsInputPanel
                             contacts={contacts}
