@@ -6,7 +6,9 @@ import {
     Stack,
     Divider,
     Typography,
+    Box,
 } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
 
 import getContactById from '../api/contacts/getContactById';
 import AddContactDialog from '../dialogs/AddContactDialog';
@@ -14,18 +16,13 @@ import AddContactDialog from '../dialogs/AddContactDialog';
 function ContactPanel(props) {
     const [isAddContactDialogOpen, setAddContactDialogOpen] = useState(false);
 
-    const contactRows = props.contacts.map((contact) => (
-        <Stack
-            direction="row"
-            justifyContent="space-evenly"
-        >
-            <Typography>{contact.rank}</Typography>
-            <Typography>{contact.firstName}</Typography>
-            <Typography>{contact.lastName}</Typography>
-            <Typography>{contact.phone}</Typography>
-            <Typography>{contact.email}</Typography>
-        </Stack>
-    ));
+    const columns = [
+        { field: 'rank', headerName: 'Rank', width: 100 },
+        { field: 'firstName', headerName: 'First Name', width: 120 },
+        { field: 'lastName', headerName: 'Last Name', width: 120 },
+        { field: 'phone', headerName: 'Phone', width: 120 },
+        { field: 'email', headerName: 'Email', width: 200 },
+    ];
 
     const addContact = (contactId) => {
         getContactById(contactId)
@@ -53,7 +50,14 @@ function ContactPanel(props) {
             >
                 <Typography variant="h5">Contacts</Typography>
                 <Divider />
-                {contactRows}
+                <Box sx={{ height: '300px' }}>
+                    <DataGrid
+                        rows={props.contacts}
+                        columns={columns}
+                        pageSize={5}
+                        rowsPerPageOptions={[5]}
+                    />
+                </Box>
                 <Stack
                     direction="row"
                     spacing={1}
