@@ -35,7 +35,7 @@ function ProjectStageInputPanel(props) {
                 }}
             >
                 <Typography>{stage.description}</Typography>
-                <Typography>{stage.dueDate.toDateString()}</Typography>
+                <Typography>{new Date(stage.dueDate).toDateString()}</Typography>
             </Stack>
         </ListItem>
     ));
