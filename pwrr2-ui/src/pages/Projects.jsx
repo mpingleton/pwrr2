@@ -40,12 +40,24 @@ function Projects() {
     }
 
     const buttonBar = (
-        <Button
-            variant="contained"
-            onClick={() => navigate('/projects/new', { replace: true })}
+        <Stack
+            direction='row'
+            spacing={1}
+            paddingTop={1}
+            paddingBottom={1}
+            sx={{
+                width: '100%',
+                height: 'fit-content',
+                justifyContent: 'end',
+            }}
         >
-            New
-        </Button>
+            <Button
+                variant="contained"
+                onClick={() => navigate('/projects/new', { replace: true })}
+            >
+                New
+            </Button>
+        </Stack>
     );
 
     const projectListItems = projectList.map((project) => (

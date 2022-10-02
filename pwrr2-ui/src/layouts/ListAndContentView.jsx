@@ -24,19 +24,7 @@ function ListAndContentView(props) {
                     height: '100%',
                 }}
             >
-                <Stack
-                    direction='row'
-                    spacing={1}
-                    paddingTop={1}
-                    paddingBottom={1}
-                    sx={{
-                        width: '100%',
-                        height: 'fit-content',
-                        justifyContent: 'end',
-                    }}
-                >
-                    {props.buttonBar}
-                </Stack>
+                {props.buttonBar}
                 <Divider />
                 <List
                     sx={{

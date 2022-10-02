@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import ListAndContentView from '../layouts/ListAndContentView';
+
+import {
+    Stack,
+} from '@mui/material';
 
 function Dashboard() {
 
     return (
-        <ListAndContentView />
+        <Stack
+            direction='column'
+        >
+
+        </Stack>
     );
 }
 
