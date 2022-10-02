@@ -113,23 +113,27 @@ function NewProject(props) {
                     />
                 </Box>
                 <Box sx={{ width: '35%' }}>
-                    <Stack
-                        direction="column"
-                        spacing={1}
-                    >
-                        <ProjectStageInputPanel
-                            stages={stages}
-                            setStages={setStages}
-                        />
-                        <ProjectOwnerInputPanel
-                            ownerId={ownerId}
-                            setOwnerId={setOwnerId}
-                        />
-                        <ProjectContactsInputPanel
-                            contacts={contacts}
-                            setContacts={setContacts}
-                        />
-                    </Stack>
+                    <ProjectStageInputPanel
+                        stages={stages}
+                        setStages={setStages}
+                    />
+                </Box>
+            </Stack>
+            <Stack
+                direction="row"
+                spacing={1}
+            >
+                <Box sx={{ width: '65%' }}>
+                    <ProjectContactsInputPanel
+                        contacts={contacts}
+                        setContacts={setContacts}
+                    />
+                </Box>
+                <Box sx={{ width: '35%' }}>
+                    <ProjectOwnerInputPanel
+                        ownerId={ownerId}
+                        setOwnerId={setOwnerId}
+                    />
                 </Box>
             </Stack>
         </Stack>
