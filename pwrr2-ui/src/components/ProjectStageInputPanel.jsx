@@ -7,6 +7,8 @@ import {
     Typography,
     Button,
     Divider,
+    List,
+    ListItem,
 } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
@@ -23,17 +25,19 @@ function ProjectStageInputPanel(props) {
         setStageDue(new Date());
     };
 
-    const currentStageComponents = props.stages.map((stage) => (
-        <Stack
-            direction="row"
-            justifyContent="space-between"
-        >
-            <Typography variant="subtitle1">{stage.description}</Typography>
-            <Typography variant="subtitle1">{new Date(stage.dueDate).toDateString()}</Typography>
-            <Button variant="contained">Up</Button>
-            <Button variant="contained">Down</Button>
-            <Button variant="contained">Delete</Button>
-        </Stack>
+    const stageListItems = props.stages.map((stage) => (
+        <ListItem button>
+            <Stack
+                direction="row"
+                justifyContent="space-between"
+                sx={{
+                    width: '100%'
+                }}
+            >
+                <Typography>{stage.description}</Typography>
+                <Typography>{stage.dueDate.toDateString()}</Typography>
+            </Stack>
+        </ListItem>
     ));
 
     return (
@@ -48,7 +52,14 @@ function ProjectStageInputPanel(props) {
             >
                 <Typography variant="h5">Stages</Typography>
                 <Divider />
-                {currentStageComponents}
+                <List
+                    sx={{
+                        width: '100%',
+                        height: '100%',
+                    }}
+                >
+                    {stageListItems}
+                </List>
                 <Stack
                     direction="row"
                     spacing={1}
