@@ -10,21 +10,32 @@ import ProjectContactsPanel from '../components/ProjectContactsPanel';
 import {
     Button,
     Stack,
+    Select,
+    MenuItem,
     Box,
 } from '@mui/material';
 
+import getGroupsInMe from '../api/groups/getGroupsInMe';
 import getProjectsInGroup from '../api/projects/getProjectsInGroup';
 import getProjectById from '../api/projects/getProjectById';
 
 function Projects() {
     const navigate = useNavigate();
-    const [projectList, setProjectList] = useState(null);
+    const [groupList, setGroupList] = useState([]);
+    const [idSelectedGroup, setSelectedGroup] = useState(null);
+    const [projectList, setProjectList] = useState([]);
     const [idSelectedProject, setSelectedProject] = useState('PWRP000000000017');
     const [selectedProjectData, setSelectedProjectData] = useState(null);
 
     useEffect(() => {
-        getProjectsInGroup('PWRG000000000002').then((data) => setProjectList(data.data));
+        getGroupsInMe().then((data) => setGroupList(data.data));
     }, []);
+
+    useEffect(() => {
+        if (idSelectedGroup !== null) {
+            getProjectsInGroup(idSelectedGroup).then((data) => setProjectList(data.data));
+        }
+    }, [idSelectedGroup]);
 
     useEffect(() => {
         if (idSelectedProject !== null) {
@@ -34,10 +45,6 @@ function Projects() {
             setSelectedProjectData(null);
         }
     }, [idSelectedProject]);
-
-    if (projectList === null) {
-        return (<h1>Loading...</h1>);
-    }
 
     const buttonBar = (
         <Stack
@@ -51,6 +58,18 @@ function Projects() {
                 justifyContent: 'end',
             }}
         >
+            <Select
+                label="Group"
+                value={idSelectedGroup}
+                onChange={(event) => setSelectedGroup(event.target.value)}
+                sx={{
+                    width: '100%',
+                }}
+            >
+                {groupList.map((group) => (
+                    <MenuItem value={group.id}>{group.name}</MenuItem>
+                ))}
+            </Select>
             <Button
                 variant="contained"
                 onClick={() => navigate('/projects/new', { replace: true })}
