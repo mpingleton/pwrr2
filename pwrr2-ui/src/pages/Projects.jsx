@@ -13,6 +13,8 @@ import {
     Select,
     MenuItem,
     Box,
+    Paper,
+    Typography
 } from '@mui/material';
 
 import getGroupsInMe from '../api/groups/getGroupsInMe';
@@ -24,7 +26,7 @@ function Projects() {
     const [groupList, setGroupList] = useState([]);
     const [idSelectedGroup, setSelectedGroup] = useState(null);
     const [projectList, setProjectList] = useState([]);
-    const [idSelectedProject, setSelectedProject] = useState('PWRP000000000017');
+    const [idSelectedProject, setSelectedProject] = useState(null);
     const [selectedProjectData, setSelectedProjectData] = useState(null);
 
     useEffect(() => {
@@ -87,7 +89,21 @@ function Projects() {
         />
     ));
 
-    const projectContentView = selectedProjectData === null ? <h1>Please wait...</h1> : (
+    const projectContentView = selectedProjectData === null ? (
+        <Paper
+            sx={{
+                position: 'relative',
+                width: 'fit-content',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)'
+            }}
+        >
+            <Typography>
+                No project selected.
+            </Typography>
+        </Paper>
+    ) : (
         <Stack
             direction="column"
             padding={1}
