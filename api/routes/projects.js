@@ -8,6 +8,7 @@ const projectsValidators = require('../validators/projects');
 
 const router = express.Router();
 
+router.post('/id/:projectId/advancestage', session(), validator(projectsValidators.advanceProjectStage), projectsHandlers.advanceProjectStage);
 router.get('/id/:projectId', session(), validator(projectsValidators.getProjectById), projectsHandlers.getProjectById);
 router.get('/in/group/:groupId', session(), validator(projectsValidators.getProjectsInGroup), projectsHandlers.getProjectsInGroup);
 router.put('/', session(), validator(projectsValidators.createProject), projectsHandlers.createProject);
