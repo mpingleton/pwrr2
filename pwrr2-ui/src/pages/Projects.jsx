@@ -21,6 +21,8 @@ import getGroupsInMe from '../api/groups/getGroupsInMe';
 import getProjectsInGroup from '../api/projects/getProjectsInGroup';
 import getProjectById from '../api/projects/getProjectById';
 import advanceProjectStage from '../api/projects/advanceProjectStage';
+import cancelProject from '../api/projects/cancelProject';
+import completeProject from '../api/projects/completeProject';
 
 function Projects() {
     const navigate = useNavigate();
@@ -51,6 +53,18 @@ function Projects() {
 
     const handleAdvanceProjectStage = () => {
         advanceProjectStage(idSelectedProject)
+            .then(() => getProjectById(idSelectedProject))
+            .then((data) => setSelectedProjectData(data));
+    };
+
+    const handleCancelProject = () => {
+        cancelProject(idSelectedProject)
+            .then(() => getProjectById(idSelectedProject))
+            .then((data) => setSelectedProjectData(data));
+    };
+
+    const handleCompleteProject = () => {
+        completeProject(idSelectedProject)
             .then(() => getProjectById(idSelectedProject))
             .then((data) => setSelectedProjectData(data));
     };
@@ -126,6 +140,8 @@ function Projects() {
                     <ProjectStagePanel
                         project={selectedProjectData}
                         advanceStage={handleAdvanceProjectStage}
+                        cancelProject={handleCancelProject}
+                        completeProject={handleCompleteProject}
                     />
                 </Box>
             </Stack>

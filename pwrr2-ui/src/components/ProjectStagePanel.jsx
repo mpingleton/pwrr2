@@ -168,6 +168,7 @@ function ProjectStagePanel(props) {
                 <Button
                     variant='contained'
                     sx={{ width: '100%' }}
+                    onClick={props.completeProject}
                 >
                     Complete
                 </Button>
@@ -185,6 +186,7 @@ function ProjectStagePanel(props) {
                     <Button
                         variant="contained"
                         sx={{ width: '100%' }}
+                        onClick={props.cancelProject}
                     >
                         Cancel
                     </Button>
