@@ -20,6 +20,7 @@ import {
 import getGroupsInMe from '../api/groups/getGroupsInMe';
 import getProjectsInGroup from '../api/projects/getProjectsInGroup';
 import getProjectById from '../api/projects/getProjectById';
+import advanceProjectStage from '../api/projects/advanceProjectStage';
 
 function Projects() {
     const navigate = useNavigate();
@@ -47,6 +48,12 @@ function Projects() {
             setSelectedProjectData(null);
         }
     }, [idSelectedProject]);
+
+    const handleAdvanceProjectStage = () => {
+        advanceProjectStage(idSelectedProject)
+            .then(() => getProjectById(idSelectedProject))
+            .then((data) => setSelectedProjectData(data));
+    };
 
     const buttonBar = (
         <Stack
@@ -115,7 +122,12 @@ function Projects() {
                 spacing={1}
             >
                 <Box sx={{ width: '60%' }}><ProjectInformationPanel project={selectedProjectData} /></Box>
-                <Box sx={{ width: '40%' }}><ProjectStagePanel project={selectedProjectData} /></Box>
+                <Box sx={{ width: '40%' }}>
+                    <ProjectStagePanel
+                        project={selectedProjectData}
+                        advanceStage={handleAdvanceProjectStage}
+                    />
+                </Box>
             </Stack>
             <Stack
                 direction="row"

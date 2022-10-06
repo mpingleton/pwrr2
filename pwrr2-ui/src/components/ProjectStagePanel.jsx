@@ -178,6 +178,7 @@ function ProjectStagePanel(props) {
                     <Button
                         variant="contained"
                         sx={{ width: '100%' }}
+                        onClick={props.advanceStage}
                     >
                         Next Stage
                     </Button>
