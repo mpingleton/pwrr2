@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
     Paper,
@@ -6,16 +6,25 @@ import {
     Typography,
     Divider,
     Box,
+    TextField,
+    Button,
 } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
+import addComment from '../api/projects/addComment';
+
 function ProjectCommentPanel(props) {
+    const [comment, setComment] = useState('');
 
     const columns = [
         { field: 'comment', headerName: 'Comment', width: 200 },
         { field: 'userId', headerName: 'Commenter', width: 150 },
         { field: 'timestamp', headerName: 'Timestamp', width: 150 },
     ];
+
+    const handleAddComment = () => {
+        addComment(props.project.id, { comment: comment }).then(() => setComment(''));
+    };
 
     return (
         <Paper
@@ -35,6 +44,23 @@ function ProjectCommentPanel(props) {
                         rowsPerPageOptions={[5]}
                     />
                 </Box>
+                <Stack
+                    direction="row"
+                    spacing={2}
+                >
+                    <TextField
+                        label="Comment"
+                        value={comment}
+                        sx={{ width: '100%' }}
+                        onChange={(event) => setComment(event.target.value)}
+                    />
+                    <Button
+                        variant="contained"
+                        onClick={handleAddComment}
+                    >
+                        Add
+                    </Button>
+                </Stack>
             </Stack>
         </Paper>
     );
