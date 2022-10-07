@@ -6,6 +6,8 @@ import ProjectInformationPanel from '../components/ProjectInformationPanel';
 import ProjectOwnerPanel from '../components/ProjectOwnerPanel';
 import ProjectStagePanel from '../components/ProjectStagePanel';
 import ProjectContactsPanel from '../components/ProjectContactsPanel';
+import ProjectCommentPanel from '../components/ProjectCommentPanel';
+import ProjectAttachmentPanel from '../components/ProjectAttachmentPanel';
 
 import {
     Button,
@@ -152,6 +154,14 @@ function Projects() {
             >
                 <Box sx={{ width: '60%' }}><ProjectContactsPanel project={selectedProjectData} /></Box>
                 <Box sx={{ width: '40%' }}><ProjectOwnerPanel project={selectedProjectData} /></Box>
+            </Stack>
+            <Stack
+                direction="row"
+                padding={1}
+                spacing={1}
+            >
+                <Box sx={{ width: '60%' }}><ProjectCommentPanel project={selectedProjectData} /></Box>
+                <Box sx={{ width: '40%' }}><ProjectAttachmentPanel project={selectedProjectData} /></Box>
             </Stack>
         </Stack>
     );
