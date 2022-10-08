@@ -103,6 +103,7 @@ model Project {
   submittedByUser User @relation("SubmittedProject", fields: [submittedBy], references: [id])
   completedByUser User? @relation("CompletedProject", fields: [completedBy], references: [id])
   cancelledByUser User? @relation("CancelledProject", fields: [cancelledBy], references: [id])
+  task Task[]
   projectStage ProjectStage[]
   projectComment ProjectComment[]
   projectFile ProjectFile[]
@@ -174,12 +175,13 @@ model ProjectContact {
 
 model Task {
   id Int @id @default(autoincrement())
+  projectId Int
   groupId Int
-  status String @db.VarChar(10)
   dueDate DateTime?
   completedDate DateTime?
   details String @db.VarChar(1023)
 
+  project Project @relation(fields: [projectId], references: [id])
   group Group @relation(fields: [groupId], references: [id])
   dependentTask TaskDependency[] @relation("DependentTask")
   independentTask TaskDependency[] @relation("IndependentTask")
