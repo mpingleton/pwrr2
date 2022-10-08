@@ -8,6 +8,7 @@ import ProjectStagePanel from '../components/ProjectStagePanel';
 import ProjectContactsPanel from '../components/ProjectContactsPanel';
 import ProjectCommentPanel from '../components/ProjectCommentPanel';
 import ProjectAttachmentPanel from '../components/ProjectAttachmentPanel';
+import ProjectGroupTaskPanel from '../components/ProjectGroupTaskPanel';
 
 import {
     Button,
@@ -161,6 +162,7 @@ function Projects() {
                 <Box sx={{ width: '60%' }}><ProjectCommentPanel project={selectedProjectData} /></Box>
                 <Box sx={{ width: '40%' }}><ProjectAttachmentPanel project={selectedProjectData} /></Box>
             </Stack>
+            <ProjectGroupTaskPanel project={selectedProjectData} />
         </Stack>
     );
 
