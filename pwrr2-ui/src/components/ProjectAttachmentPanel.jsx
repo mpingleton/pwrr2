@@ -13,7 +13,9 @@ function ProjectAttachmentPanel(props) {
 
     const columns = [
         { field: 'filename', headerName: 'Filename', width: 200 },
-        { field: 'uploader', headerName: 'Uploaded By', width: 200 },
+        { field: 'byteSize', headerName: 'Size', width: 70 },
+        { field: 'description', headerName: 'Description', width: 300 },
+        { field: 'submitterId', headerName: 'Uploaded By', width: 100 },
     ];
 
     return (
@@ -28,7 +30,7 @@ function ProjectAttachmentPanel(props) {
                 <Divider />
                 <Box sx={{ height: '300px' }}>
                     <DataGrid
-                        rows={[]}
+                        rows={props.project.attachments}
                         columns={columns}
                         pageSize={5}
                         rowsPerPageOptions={[5]}

@@ -1,3 +1,4 @@
+const getAttachmentsForProject = require('../../services/projects/getAttachmentsForProject');
 const getCommentsForProject = require('../../services/projects/getCommentsForProject');
 const getContactsForProject = require('../../services/projects/getContactsForProject');
 const getProjectById = require('../../services/projects/getProjectById');
@@ -25,6 +26,7 @@ module.exports = async (req, res) => {
     projectData.contacts = await Promise.all(contactIds.map((contact) => getContactById(contact.contactId)));
 
     projectData.comments = await getCommentsForProject(projectData.id);
+    projectData.attachments = await getAttachmentsForProject(projectData.id);
     
     projectData.ownerData = await getGroupById(projectData.ownerId);
     projectData.ownerData.organizationData = await getOrganizationById(projectData.ownerData.organizationId);
