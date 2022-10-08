@@ -4,6 +4,7 @@ const prisma = new PrismaClient();
 const parseIdentifier = require('../identifiers/parseIdentifier');
 const projectIdentifier = require('../identifiers/projectIdentifier');
 const groupIdentifier = require('../identifiers/groupIdentifier');
+const taskIdentifier = require('../identifiers/taskIdentifier');
 
 module.exports = async (projectId) => {
     const data = await prisma.task.findMany({
@@ -13,7 +14,7 @@ module.exports = async (projectId) => {
     });
 
     const taskData = data.map((task) => ({
-        id: task.id,
+        id: taskIdentifier(task.id),
         projectId: projectIdentifier(task.projectId),
         groupId: groupIdentifier(task.groupId),
         dueDate: task.dueDate,
