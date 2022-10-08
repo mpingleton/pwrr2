@@ -5,7 +5,9 @@ import {
     Stack,
     Typography,
     Divider,
+    Box,
 } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
 
 import getTasksInProject from '../api/tasks/getTasksInProject';
 
@@ -16,17 +18,11 @@ function ProjectGroupTaskPanel(props) {
         getTasksInProject(props.project.id).then((data) => setTasks(data.data))
     }, []);
 
-    const taskComponents = tasks.map((task) => (
-        <Stack
-            direction="row"
-            spacing={2}
-            justifyContent="space-evenly"
-        >
-            <Typography>{task.id}</Typography>
-            <Typography>{task.groupId}</Typography>
-            <Typography>{task.details}</Typography>
-        </Stack>
-    ));
+    const columns = [
+        { field: 'id', headerName: 'Task ID', width: 180 },
+        { field: 'groupId', headerName: 'Assigned Group', width: 180 },
+        { field: 'details', headerName: 'Details', width: 600 },
+    ];
 
     return (
         <Paper
@@ -38,7 +34,14 @@ function ProjectGroupTaskPanel(props) {
             >
                 <Typography variant="h5">Group Tasks</Typography>
                 <Divider />
-                {taskComponents}
+                <Box sx={{ height: '300px' }}>
+                    <DataGrid
+                        rows={tasks}
+                        columns={columns}
+                        pageSize={5}
+                        rowsPerPageOptions={[5]}
+                    />
+                </Box>
             </Stack>
         </Paper>
     );
