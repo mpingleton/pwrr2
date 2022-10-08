@@ -17,7 +17,7 @@ function ProjectCommentPanel(props) {
     const [comment, setComment] = useState('');
 
     const columns = [
-        { field: 'comment', headerName: 'Comment', width: 200 },
+        { field: 'comment', headerName: 'Comment', width: 400 },
         { field: 'userId', headerName: 'Commenter', width: 150 },
         { field: 'timestamp', headerName: 'Timestamp', width: 150 },
     ];
