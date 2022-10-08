@@ -131,10 +131,10 @@ function Projects() {
         <Stack
             direction="column"
             padding={1}
+            spacing={1}
         >
             <Stack
                 direction="row"
-                padding={1}
                 spacing={1}
             >
                 <Box sx={{ width: '60%' }}><ProjectInformationPanel project={selectedProjectData} /></Box>
@@ -149,7 +149,6 @@ function Projects() {
             </Stack>
             <Stack
                 direction="row"
-                padding={1}
                 spacing={1}
             >
                 <Box sx={{ width: '60%' }}><ProjectContactsPanel project={selectedProjectData} /></Box>
@@ -157,7 +156,6 @@ function Projects() {
             </Stack>
             <Stack
                 direction="row"
-                padding={1}
                 spacing={1}
             >
                 <Box sx={{ width: '60%' }}><ProjectCommentPanel project={selectedProjectData} /></Box>
