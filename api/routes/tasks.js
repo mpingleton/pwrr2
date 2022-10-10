@@ -8,6 +8,7 @@ const tasksValidators = require('../validators/tasks');
 
 const router = express.Router();
 
+router.get('/id/:taskId', session(), validator(tasksValidators.getTaskById), tasksHandlers.getTaskById);
 router.get('/in/project/:projectId', session(), validator(tasksValidators.getTasksInProject), tasksHandlers.getTasksInProject);
 
 module.exports = router;
