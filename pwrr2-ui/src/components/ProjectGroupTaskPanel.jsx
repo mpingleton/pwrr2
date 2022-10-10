@@ -6,13 +6,17 @@ import {
     Typography,
     Divider,
     Box,
+    Button,
 } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
+import TaskDialog from '../dialogs/TaskDialog';
 
 import getTasksInProject from '../api/tasks/getTasksInProject';
 
 function ProjectGroupTaskPanel(props) {
     const [tasks, setTasks] = useState([]);
+    const [selectedTaskId, setSelectedTaskId] = useState(null)
+    const [isTaskDialogOpen, setTaskDialogOpen] = useState(false);
 
     useEffect(() => {
         getTasksInProject(props.project.id).then((data) => setTasks(data.data))
@@ -28,6 +32,11 @@ function ProjectGroupTaskPanel(props) {
         <Paper
             sx={{ padding: 2 }}
         >
+            <TaskDialog
+                open={isTaskDialogOpen}
+                onClose={() => setTaskDialogOpen(false)}
+                taskId={selectedTaskId}
+            />
             <Stack
                 direction="column"
                 spacing={2}
@@ -40,8 +49,25 @@ function ProjectGroupTaskPanel(props) {
                         columns={columns}
                         pageSize={5}
                         rowsPerPageOptions={[5]}
+                        onSelectionModelChange={(event) => {
+                            if (event.length === 1) {
+                                setSelectedTaskId(event[0]);
+                            }
+                        }}
                     />
                 </Box>
+                <Stack
+                    direction="row"
+                    spacing={2}
+                >
+                    <Button
+                        variant='contained'
+                        onClick={() => setTaskDialogOpen(true)}
+                        disabled={selectedTaskId === null}
+                    >
+                        View
+                    </Button>
+                </Stack>
             </Stack>
         </Paper>
     );
