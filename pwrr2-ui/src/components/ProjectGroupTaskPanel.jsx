@@ -16,7 +16,7 @@ function ProjectGroupTaskPanel(props) {
 
     useEffect(() => {
         getTasksInProject(props.project.id).then((data) => setTasks(data.data))
-    }, []);
+    }, [props.project.id]);
 
     const columns = [
         { field: 'id', headerName: 'Task ID', width: 180 },
