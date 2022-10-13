@@ -50,6 +50,7 @@ function Login() {
                     value={passphrase}
                     variant='outlined'
                     label='Passphrase'
+                    type="password"
                     onChange={(event) => setPassphrase(event.target.value)}
                 />
                 <Stack
