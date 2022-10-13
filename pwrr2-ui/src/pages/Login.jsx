@@ -7,6 +7,7 @@ import {
     TextField,
     Button,
     Typography,
+    Divider,
 } from '@mui/material';
 
 import login from '../api/auth/login';
@@ -37,9 +38,9 @@ function Login() {
                 direction="column"
                 spacing={1}
             >
-                <Typography>
-                    Please log in:
-                </Typography>
+                <Typography variant="h5">PWRR2</Typography>
+                <Divider />
+                <Typography>Please log in:</Typography>
                 <TextField
                     value={username}
                     variant='outlined'
