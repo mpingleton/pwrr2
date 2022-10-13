@@ -55,40 +55,52 @@ function TaskDialog(props) {
                         direction="column"
                         spacing={1}
                     >
-                        <TextField
-                            InputProps={{ readOnly: true }}
-                            label="Task Details"
-                            value={task.details}
-                            multiline
-                            rows={4}
-                        />
                         <Stack
                             direction="row"
                             spacing={1}
                         >
-                            <Typography>Task Id: </Typography>
-                            <Typography>{task.id}</Typography>
-                        </Stack>
-                        <Stack
-                            direction="row"
-                            spacing={1}
-                        >
-                            <Typography>Due Date: </Typography>
-                            <Typography>{task.dueDate}</Typography>
-                        </Stack>
-                        <Stack
-                            direction="row"
-                            spacing={1}
-                        >
-                            <Typography>Completion Date: </Typography>
-                            <Typography>{task.completedDate}</Typography>
-                        </Stack>
-                        <Stack
-                            direction="row"
-                            spacing={1}
-                        >
-                            <Typography>Assigned Group: </Typography>
-                            <Typography>{task.groupId}</Typography>
+                            <TextField
+                                InputProps={{ readOnly: true }}
+                                label="Task Details"
+                                value={task.details}
+                                multiline
+                                rows={4}
+                                sx={{ width: '100%' }}
+                            />
+                            <Stack
+                                direction="column"
+                                spacing={1}
+                                sx={{ width: '100%' }}
+                            >
+                                <Stack
+                                    direction="row"
+                                    spacing={1}
+                                >
+                                    <Typography>Task Id: </Typography>
+                                    <Typography>{task.id}</Typography>
+                                </Stack>
+                                <Stack
+                                    direction="row"
+                                    spacing={1}
+                                >
+                                    <Typography>Due Date: </Typography>
+                                    <Typography>{task.dueDate}</Typography>
+                                </Stack>
+                                <Stack
+                                    direction="row"
+                                    spacing={1}
+                                >
+                                    <Typography>Completion Date: </Typography>
+                                    <Typography>{task.completedDate}</Typography>
+                                </Stack>
+                                <Stack
+                                    direction="row"
+                                    spacing={1}
+                                >
+                                    <Typography>Assigned Group: </Typography>
+                                    <Typography>{task.groupId}</Typography>
+                                </Stack>
+                            </Stack>
                         </Stack>
                         <Stack
                             direction="row"
