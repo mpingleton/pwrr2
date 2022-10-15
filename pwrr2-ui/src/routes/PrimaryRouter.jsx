@@ -5,6 +5,7 @@ import {
     Route
 } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
+import Warning from '../pages/Warning';
 import Login from '../pages/Login';
 import Dashboard from '../pages/Dashboard';
 import Projects from '../pages/Projects';
@@ -20,6 +21,7 @@ function PrimaryRouter() {
                 <Route path="/projects" element={<MainLayout element={<Projects />} />} />
                 <Route path="/dashboard" element={<MainLayout element={<Dashboard />} />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/" element={<Warning />} />
             </Routes>
         </BrowserRouter>
     );
