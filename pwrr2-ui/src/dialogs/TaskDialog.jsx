@@ -61,8 +61,8 @@ function TaskDialog(props) {
                         >
                             <TextField
                                 InputProps={{ readOnly: true }}
-                                label="Task Details"
-                                value={task.details}
+                                label="Task Description"
+                                value={task.description}
                                 multiline
                                 rows={4}
                                 sx={{ width: '100%' }}
