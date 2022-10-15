@@ -18,7 +18,12 @@ module.exports = async (taskId) => {
         projectId: projectIdentifier(data.projectId),
         groupId: groupIdentifier(data.groupId),
         dueDate: data.dueDate,
+        startedDate: data.startedDate,
+        startedBy: data.startedBy,
         completedDate: data.completedDate,
+        completedBy: data.completedBy,
+        cancelledDate: data.cancelledDate,
+        cancelledBy: data.cancelledBy,
         description: data.description,
     };
 
