@@ -54,8 +54,10 @@ function Login() {
                     type="password"
                     onChange={(event) => setPassphrase(event.target.value)}
                 />
+                <Divider />
                 <Stack
                     direction="row"
+                    spacing={1}
                     justifyContent='end'
                 >
                     <Button
