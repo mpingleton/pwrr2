@@ -12,11 +12,13 @@ import { DataGrid } from '@mui/x-data-grid';
 import TaskDialog from '../dialogs/TaskDialog';
 
 import getTasksInProject from '../api/tasks/getTasksInProject';
+import TaskInputDialog from '../dialogs/TaskInputDialog';
 
 function ProjectGroupTaskPanel(props) {
     const [tasks, setTasks] = useState([]);
     const [selectedTaskId, setSelectedTaskId] = useState(null)
     const [isTaskDialogOpen, setTaskDialogOpen] = useState(false);
+    const [isTaskInputDialogOpen, setTaskInputDialogOpen] = useState(false);
 
     useEffect(() => {
         getTasksInProject(props.project.id).then((data) => setTasks(data.data))
@@ -36,6 +38,11 @@ function ProjectGroupTaskPanel(props) {
                 open={isTaskDialogOpen}
                 onClose={() => setTaskDialogOpen(false)}
                 taskId={selectedTaskId}
+            />
+            <TaskInputDialog
+                open={isTaskInputDialogOpen}
+                onClose={() => setTaskInputDialogOpen(false)}
+                project={props.project}
             />
             <Stack
                 direction="column"
@@ -66,6 +73,12 @@ function ProjectGroupTaskPanel(props) {
                         disabled={selectedTaskId === null}
                     >
                         View
+                    </Button>
+                    <Button
+                        variant='contained'
+                        onClick={() => setTaskInputDialogOpen(true)}
+                    >
+                        New
                     </Button>
                 </Stack>
             </Stack>
