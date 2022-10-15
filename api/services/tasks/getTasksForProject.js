@@ -19,7 +19,7 @@ module.exports = async (projectId) => {
         groupId: groupIdentifier(task.groupId),
         dueDate: task.dueDate,
         completedDate: task.completedDate,
-        details: task.details,
+        description: task.description,
     }));
 
     return taskData;

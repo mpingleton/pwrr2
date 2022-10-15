@@ -19,7 +19,7 @@ module.exports = async (taskId) => {
         groupId: groupIdentifier(data.groupId),
         dueDate: data.dueDate,
         completedDate: data.completedDate,
-        details: data.details,
+        description: data.description,
     };
 
     return taskData;

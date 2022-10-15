@@ -29,7 +29,7 @@ function TaskDialog(props) {
     const columns = [
         { field: 'id', headerName: 'Task ID', width: 180 },
         { field: 'groupId', headerName: 'Assigned Group', width: 180 },
-        { field: 'details', headerName: 'Details', width: 600 },
+        { field: 'description', headerName: 'Details', width: 600 },
     ];
 
     return (
