@@ -20,6 +20,8 @@ module.exports = async (projectId) => {
         dueDate: task.dueDate,
         startedDate: task.startedDate,
         startedBy: task.startedBy,
+        pausedDate: task.pausedDate,
+        pausedBy: task.pausedBy,
         completedDate: task.completedDate,
         completedBy: task.completedBy,
         cancelledDate: task.cancelledDate,

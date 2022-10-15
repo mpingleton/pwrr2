@@ -31,6 +31,7 @@ model User {
   startedProjectStage ProjectStage[] @relation("StartedProjectStage")
   completedProjectStage ProjectStage[] @relation("CompletedProjectStage")
   startedTask Task[] @relation("StartedTask")
+  pausedTask Task[] @relation("PausedTask")
   completedTask Task[] @relation("CompletedTask")
   cancelledTask Task[] @relation("CancelledTask")
 }
@@ -183,6 +184,8 @@ model Task {
   dueDate DateTime?
   startedDate DateTime?
   startedBy Int?
+  pausedDate DateTime?
+  pausedBy Int?
   completedDate DateTime?
   completedBy Int?
   cancelledDate DateTime?
@@ -192,6 +195,7 @@ model Task {
   project Project @relation(fields: [projectId], references: [id])
   group Group @relation(fields: [groupId], references: [id])
   startedByUser User? @relation("StartedTask", fields: [startedBy], references: [id])
+  pausedByUser User? @relation("PausedTask", fields: [pausedBy], references: [id])
   completedByUser User? @relation("CompletedTask", fields: [completedBy], references: [id])
   cancelledByUser User? @relation("CancelledTask", fields: [cancelledBy], references: [id])
   dependentTask TaskDependency[] @relation("DependentTask")
