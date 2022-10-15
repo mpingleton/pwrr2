@@ -10,5 +10,6 @@ const router = express.Router();
 
 router.get('/id/:taskId', session(), validator(tasksValidators.getTaskById), tasksHandlers.getTaskById);
 router.get('/in/project/:projectId', session(), validator(tasksValidators.getTasksInProject), tasksHandlers.getTasksInProject);
+router.put('/', session(), validator(tasksValidators.createTask), tasksHandlers.createTask);
 
 module.exports = router;
