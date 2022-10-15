@@ -7,6 +7,8 @@ import {
     Stack,
     TextField,
     Typography,
+    Button,
+    Divider
 } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
@@ -56,6 +58,30 @@ function TaskDialog(props) {
                         spacing={1}
                     >
                         <Stack
+                            direction="row-reverse"
+                            spacing={1}
+                        >
+                            <Button
+                                variant="contained"
+                                onClick={() => {}}
+                            >
+                                Complete
+                            </Button>
+                            <Button
+                                variant="contained"
+                                onClick={() => {}}
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                variant="contained"
+                                onClick={() => {}}
+                            >
+                                Start
+                            </Button>
+                        </Stack>
+                        <Divider />
+                        <Stack
                             direction="row"
                             spacing={1}
                         >
@@ -64,7 +90,7 @@ function TaskDialog(props) {
                                 label="Task Description"
                                 value={task.description}
                                 multiline
-                                rows={4}
+                                rows={8}
                                 sx={{ width: '100%' }}
                             />
                             <Stack
@@ -76,29 +102,52 @@ function TaskDialog(props) {
                                     direction="row"
                                     spacing={1}
                                 >
-                                    <Typography>Task Id: </Typography>
-                                    <Typography>{task.id}</Typography>
+                                    <TextField
+                                        InputProps={{ readOnly: true }}
+                                        label="Task ID"
+                                        value={task.id}
+                                        sx={{ width: '100%' }}
+                                    />
+                                    <TextField
+                                        InputProps={{ readOnly: true }}
+                                        label="Due Date"
+                                        value={new Date(task.dueDate).toDateString()}
+                                        sx={{ width: '100%' }}
+                                    />
                                 </Stack>
                                 <Stack
                                     direction="row"
                                     spacing={1}
                                 >
-                                    <Typography>Due Date: </Typography>
-                                    <Typography>{task.dueDate}</Typography>
+                                    <TextField
+                                        InputProps={{ readOnly: true }}
+                                        label="Status"
+                                        value={'Not Started'}
+                                        sx={{ width: '100%' }}
+                                    />
+                                    <TextField
+                                        InputProps={{ readOnly: true }}
+                                        label="Status Date"
+                                        value={new Date().toDateString()}
+                                        sx={{ width: '100%' }}
+                                    />
                                 </Stack>
                                 <Stack
                                     direction="row"
                                     spacing={1}
                                 >
-                                    <Typography>Completion Date: </Typography>
-                                    <Typography>{task.completedDate}</Typography>
-                                </Stack>
-                                <Stack
-                                    direction="row"
-                                    spacing={1}
-                                >
-                                    <Typography>Assigned Group: </Typography>
-                                    <Typography>{task.groupId}</Typography>
+                                    <TextField
+                                        InputProps={{ readOnly: true }}
+                                        label="Assigned Group"
+                                        value={task.groupId}
+                                        sx={{ width: '100%' }}
+                                    />
+                                    <TextField
+                                        InputProps={{ readOnly: true }}
+                                        label="Status By"
+                                        value={'joe.snuffy'}
+                                        sx={{ width: '100%' }}
+                                    />
                                 </Stack>
                             </Stack>
                         </Stack>
