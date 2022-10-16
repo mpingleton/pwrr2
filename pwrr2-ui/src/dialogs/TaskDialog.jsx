@@ -6,13 +6,17 @@ import {
     Paper,
     Stack,
     TextField,
-    Typography,
     Button,
     Divider
 } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
 import getTaskById from '../api/tasks/getTaskById';
+import completeTaskById from '../api/tasks/completeTaskById';
+import cancelTaskById from '../api/tasks/cancelTaskById';
+import pauseTaskById from '../api/tasks/pauseTaskById';
+import startTaskById from '../api/tasks/startTaskById';
+import resumeTaskById from '../api/tasks/resumeTaskById';
 
 function TaskDialog(props) {
     const [task, setTask] = useState(null);
@@ -33,6 +37,71 @@ function TaskDialog(props) {
         { field: 'groupId', headerName: 'Assigned Group', width: 180 },
         { field: 'description', headerName: 'Details', width: 600 },
     ];
+
+    const handleStartComplete = () => {
+        if (task.startedBy === null) {
+            startTaskById(task.id)
+                .then(() => getTaskById(props.taskId))
+                .then((data) => setTask(data));
+        }
+        else {
+            completeTaskById(task.id)
+                .then(() => getTaskById(props.taskId))
+                .then((data) => setTask(data));
+        }
+    };
+
+    const handlePauseResume = () => {
+        if (task.pausedBy === null) {
+            pauseTaskById(task.id)
+                .then(() => getTaskById(props.taskId))
+                .then((data) => setTask(data));
+        }
+        else {
+            resumeTaskById(task.id)
+                .then(() => getTaskById(props.taskId))
+                .then((data) => setTask(data));
+        }
+    };
+
+    const handleCancel = () => {
+        cancelTaskById(task.id)
+            .then(() => getTaskById(props.taskId))
+            .then((data) => setTask(data));
+    };
+
+    const status = () => {
+        if (task.completedBy !== null) {
+            return {
+                str: "Completed",
+                user: task.completedBy,
+                timestamp: task.completedDate,
+            };
+        }
+        else if (task.cancelledBy !== null) {
+            return {
+                str: "Cancelled",
+                user: task.cancelledBy,
+                timestamp: task.cancelledDate,
+            };
+        }
+        else if (task.pausedBy !== null) {
+            return {
+                str: "Paused",
+                user: task.pausedBy,
+                timestamp: task.pausedDate,
+            };
+        }
+        else if (task.startedBy !== null) {
+            return {
+                str: "In Progress",
+                user: task.startedBy,
+                timestamp: task.startedDate,
+            };
+        }
+
+        return { str: "Not Started" };
+    };
 
     return (
         <Modal
@@ -58,26 +127,29 @@ function TaskDialog(props) {
                         spacing={1}
                     >
                         <Stack
-                            direction="row-reverse"
+                            direction="row"
                             spacing={1}
                         >
                             <Button
                                 variant="contained"
-                                onClick={() => {}}
-                            >
-                                Complete
-                            </Button>
-                            <Button
-                                variant="contained"
-                                onClick={() => {}}
+                                onClick={handleCancel}
+                                disabled={task.cancelledBy !== null || task.completedBy !== null}
                             >
                                 Cancel
                             </Button>
                             <Button
                                 variant="contained"
-                                onClick={() => {}}
+                                onClick={handlePauseResume}
+                                disabled={task.startedBy === null || task.cancelledBy !== null || task.completedBy !== null}
                             >
-                                Start
+                                {task.pausedBy === null ? "Pause" : "Resume"}
+                            </Button>
+                            <Button
+                                variant="contained"
+                                onClick={handleStartComplete}
+                                disabled={task.cancelledBy !== null || task.completedBy !== null}
+                            >
+                                {task.startedBy === null ? "Start" : "Complete"}
                             </Button>
                         </Stack>
                         <Divider />
@@ -122,13 +194,13 @@ function TaskDialog(props) {
                                     <TextField
                                         InputProps={{ readOnly: true }}
                                         label="Status"
-                                        value={'Not Started'}
+                                        value={status().str}
                                         sx={{ width: '100%' }}
                                     />
                                     <TextField
                                         InputProps={{ readOnly: true }}
                                         label="Status Date"
-                                        value={new Date().toDateString()}
+                                        value={new Date(status().timestamp).toDateString()}
                                         sx={{ width: '100%' }}
                                     />
                                 </Stack>
@@ -145,7 +217,7 @@ function TaskDialog(props) {
                                     <TextField
                                         InputProps={{ readOnly: true }}
                                         label="Status By"
-                                        value={'joe.snuffy'}
+                                        value={status().user}
                                         sx={{ width: '100%' }}
                                     />
                                 </Stack>
