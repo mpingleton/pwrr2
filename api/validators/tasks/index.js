@@ -1,3 +1,4 @@
+const resumeTaskById = require('./resumeTaskById');
 const startTaskById = require('./startTaskById');
 const completeTaskById = require('./completeTaskById');
 const cancelTaskById = require('./cancelTaskById');
@@ -7,6 +8,7 @@ const getTaskById = require('./getTaskById');
 const getTasksInProject = require('./getTasksInProject');
 
 module.exports = {
+    resumeTaskById,
     startTaskById,
     completeTaskById,
     cancelTaskById,
