@@ -187,7 +187,7 @@ function TaskStagePanel(props) {
                 <Button
                     variant='contained'
                     sx={{ width: '100%' }}
-                    onClick={() => {}}
+                    onClick={props.task.startedBy === null ? props.startTask : props.completeTask}
                     disabled={props.task.cancelledBy !== null || props.task.completedBy !== null}
                 >
                     {props.task.startedBy === null ? "Start" : "Complete"}
@@ -199,7 +199,7 @@ function TaskStagePanel(props) {
                     <Button
                         variant="contained"
                         sx={{ width: '100%' }}
-                        onClick={() => {}}
+                        onClick={props.task.pausedBy === null ? props.pauseTask : props.resumeTask}
                         disabled={props.task.startedBy === null || props.task.cancelledBy !== null || props.task.completedBy !== null}
                     >
                         {props.task.pausedBy === null ? "Pause" : "Resume"}
@@ -207,7 +207,7 @@ function TaskStagePanel(props) {
                     <Button
                         variant="contained"
                         sx={{ width: '100%' }}
-                        onClick={() => {}}
+                        onClick={props.cancelTask}
                         disabled={props.task.cancelledBy !== null || props.task.completedBy !== null}
                     >
                         Cancel

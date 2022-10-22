@@ -18,6 +18,11 @@ import {
 import getGroupsInMe from '../api/groups/getGroupsInMe';
 import getTasksInGroup from '../api/tasks/getTasksInGroup';
 import getTaskById from '../api/tasks/getTaskById';
+import completeTaskById from '../api/tasks/completeTaskById';
+import cancelTaskById from '../api/tasks/cancelTaskById';
+import pauseTaskById from '../api/tasks/pauseTaskById';
+import startTaskById from '../api/tasks/startTaskById';
+import resumeTaskById from '../api/tasks/resumeTaskById';
 
 function Tasks() {
     const navigate = useNavigate();
@@ -45,6 +50,36 @@ function Tasks() {
             setSelectedTaskData(null);
         }
     }, [idSelectedTask]);
+
+    const handleCompleteTask = () => {
+        completeTaskById(idSelectedTask)
+            .then(() => getTaskById(idSelectedTask))
+            .then((data) => setSelectedTaskData(data));
+    };
+
+    const handleCancelTask = () => {
+        cancelTaskById(idSelectedTask)
+            .then(() => getTaskById(idSelectedTask))
+            .then((data) => setSelectedTaskData(data));
+    };
+
+    const handlePauseTask = () => {
+        pauseTaskById(idSelectedTask)
+            .then(() => getTaskById(idSelectedTask))
+            .then((data) => setSelectedTaskData(data));
+    };
+
+    const handleStartTask = () => {
+        startTaskById(idSelectedTask)
+            .then(() => getTaskById(idSelectedTask))
+            .then((data) => setSelectedTaskData(data));
+    };
+
+    const handleResumeTask = () => {
+        resumeTaskById(idSelectedTask)
+            .then(() => getTaskById(idSelectedTask))
+            .then((data) => setSelectedTaskData(data));
+    };
 
     const buttonBar = (
         <Stack
@@ -110,6 +145,11 @@ function Tasks() {
                 <Box sx={{ width: '40%' }}>
                     <TaskStagePanel
                         task={selectedTaskData}
+                        startTask={handleStartTask}
+                        pauseTask={handlePauseTask}
+                        resumeTask={handleResumeTask}
+                        cancelTask={handleCancelTask}
+                        completeTask={handleCompleteTask}
                     />
                 </Box>
             </Stack>
