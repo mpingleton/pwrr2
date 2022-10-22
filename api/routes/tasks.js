@@ -14,6 +14,7 @@ router.post('/id/:taskId/pause', session(), validator(tasksValidators.pauseTaskB
 router.post('/id/:taskId/resume', session(), validator(tasksValidators.resumeTaskById), tasksHandlers.resumeTaskById);
 router.post('/id/:taskId/cancel', session(), validator(tasksValidators.cancelTaskById), tasksHandlers.cancelTaskById);
 router.get('/id/:taskId', session(), validator(tasksValidators.getTaskById), tasksHandlers.getTaskById);
+router.get('/in/group/:groupId', session(), validator(tasksValidators.getTasksInGroup), tasksHandlers.getTasksInGroup);
 router.get('/in/project/:projectId', session(), validator(tasksValidators.getTasksInProject), tasksHandlers.getTasksInProject);
 router.put('/', session(), validator(tasksValidators.createTask), tasksHandlers.createTask);
 
