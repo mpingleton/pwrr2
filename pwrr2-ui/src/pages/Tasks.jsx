@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ListAndContentView from '../layouts/ListAndContentView';
 import TaskListItem from '../components/TaskListItem';
+import TaskInformationPanel from '../components/TaskInformationPanel';
+import TaskStagePanel from '../components/TaskStagePanel';
 
 import {
     Button,
@@ -79,10 +81,46 @@ function Tasks() {
         />
     ));
 
+    const taskContentView = selectedTaskData === null ? (
+        <Paper
+            sx={{
+                position: 'relative',
+                width: 'fit-content',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                padding: 2,
+            }}
+        >
+            <Typography>
+                No task selected.
+            </Typography>
+        </Paper>
+    ) : (
+        <Stack
+            direction="column"
+            padding={1}
+            spacing={1}
+        >
+            <Stack
+                direction="row"
+                spacing={1}
+            >
+                <Box sx={{ width: '60%' }}><TaskInformationPanel task={selectedTaskData} /></Box>
+                <Box sx={{ width: '40%' }}>
+                    <TaskStagePanel
+                        task={selectedTaskData}
+                    />
+                </Box>
+            </Stack>
+        </Stack>
+    )
+
     return (
         <ListAndContentView
             list={taskListItems}
             buttonBar={buttonBar}
+            content={taskContentView}
         />
     );
 }
