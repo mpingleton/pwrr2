@@ -4,6 +4,8 @@ import ListAndContentView from '../layouts/ListAndContentView';
 import TaskListItem from '../components/TaskListItem';
 import TaskInformationPanel from '../components/TaskInformationPanel';
 import TaskStagePanel from '../components/TaskStagePanel';
+import TaskAssigneePanel from '../components/TaskAssigneePanel';
+import TaskProjectPanel from '../components/TaskProjectPanel';
 
 import {
     Button,
@@ -152,6 +154,13 @@ function Tasks() {
                         completeTask={handleCompleteTask}
                     />
                 </Box>
+            </Stack>
+            <Stack
+                direction="row"
+                spacing={1}
+            >
+                <Box sx={{ width: '60%' }}><TaskProjectPanel task={selectedTaskData} /></Box>
+                <Box sx={{ width: '40%' }}><TaskAssigneePanel task={selectedTaskData} /></Box>
             </Stack>
         </Stack>
     )
