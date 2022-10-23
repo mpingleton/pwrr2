@@ -182,7 +182,7 @@ function TaskStagePanel(props) {
                 direction="column"
                 spacing={1}
             >
-                <Typography variant="h5">Stages and Status</Typography>
+                <Typography variant="h5">Status</Typography>
                 <Divider />
                 <Button
                     variant='contained'
