@@ -161,7 +161,7 @@ function ProjectStagePanel(props) {
         >
             <Stack
                 direction="column"
-                spacing={1}
+                spacing={2}
             >
                 <Typography variant="h5">Stages and Status</Typography>
                 <Divider />
