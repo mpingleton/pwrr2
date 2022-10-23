@@ -4,9 +4,7 @@ const getIndependentTasksForTask = require('../../services/tasks/getIndependentT
 
 module.exports = async (req, res) => {
     const taskData = await getTaskById(req.params.taskId);
-    //taskData.dependentTasks = await getDependentTasksForTask(taskData.id);
-    //taskData.independentTasks = await getIndependentTasksForTask(taskData.id);
-
+    
     taskData.dependentTasks = await getDependentTasksForTask(taskData.id)
                                         .then((tasks) => Promise.all(tasks.map((task) => getTaskById(task))));
     taskData.independentTasks = await getIndependentTasksForTask(taskData.id)
