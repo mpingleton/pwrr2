@@ -6,6 +6,8 @@ import TaskInformationPanel from '../components/TaskInformationPanel';
 import TaskStagePanel from '../components/TaskStagePanel';
 import TaskAssigneePanel from '../components/TaskAssigneePanel';
 import TaskProjectPanel from '../components/TaskProjectPanel';
+import TaskListDependentTasks from '../components/TaskListDependentTasks';
+import TaskListIndependentTasks from '../components/TaskListIndependentTasks';
 
 import {
     Button,
@@ -161,6 +163,13 @@ function Tasks() {
             >
                 <Box sx={{ width: '60%' }}><TaskProjectPanel task={selectedTaskData} /></Box>
                 <Box sx={{ width: '40%' }}><TaskAssigneePanel task={selectedTaskData} /></Box>
+            </Stack>
+            <Stack
+                direction="row"
+                spacing={1}
+            >
+                <Box sx={{ width: '50%' }}><TaskListIndependentTasks task={selectedTaskData} /></Box>
+                <Box sx={{ width: '50%' }}><TaskListDependentTasks task={selectedTaskData} /></Box>
             </Stack>
         </Stack>
     )
