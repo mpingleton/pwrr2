@@ -9,6 +9,24 @@ import {
 } from '@mui/material';
 
 function TaskListItem(props) {
+
+    const status = () => {
+        if (props.task.completedDate !== null) {
+            return 'Complete';
+        }
+        else if (props.task.cancelledDate !== null) {
+            return 'Cancelled';
+        }
+        else if (props.task.pausedDate !== null) {
+            return 'Paused';
+        }
+        else if (props.task.startedDate !== null) {
+            return 'In Progress';
+        }
+        else {
+            return 'Not Started';
+        }
+    };
     
     return (
         <ListItem
@@ -34,6 +52,7 @@ function TaskListItem(props) {
                     justifyContent="space-between"
                 >
                     <Typography variant="subtitle2">{props.task.id}</Typography>
+                    <Typography variant="subtitle2">{status()}</Typography>
                 </Stack>
             </Stack>
         </ListItem>
