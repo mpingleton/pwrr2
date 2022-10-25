@@ -6,6 +6,7 @@ const tasksRoute = require('./tasks');
 const contactsRoute = require('./contacts');
 const organizationsRoute = require('./organizations');
 const groupsRoute = require('./groups');
+const dashboardRoute = require('./dashboard');
 
 const router = express.Router();
 
@@ -15,5 +16,6 @@ router.use('/tasks', tasksRoute);
 router.use('/contacts', contactsRoute);
 router.use('/organizations', organizationsRoute);
 router.use('/groups', groupsRoute);
+router.use('/dashboard', dashboardRoute);
 
 module.exports = router;
