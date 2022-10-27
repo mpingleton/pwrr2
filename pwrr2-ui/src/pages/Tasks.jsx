@@ -33,6 +33,7 @@ function Tasks() {
     const navigate = useNavigate();
     const [groupList, setGroupList] = useState([]);
     const [idSelectedGroup, setSelectedGroup] = useState(null);
+    const [taskFilterSelector, setTaskFilterSelector] = useState("active");
     const [taskList, setTaskList] = useState([]);
     const [idSelectedTask, setSelectedTask] = useState(null);
     const [selectedTaskData, setSelectedTaskData] = useState(null);
@@ -43,10 +44,14 @@ function Tasks() {
 
     useEffect(() => {
         if (idSelectedGroup !== null) {
-            //getTasksInGroup(idSelectedGroup).then((data) => setTaskList(data.data));
-            getActiveTasksInGroup(idSelectedGroup).then((data) => setTaskList(data.data));
+            if (taskFilterSelector === "all") {
+                getTasksInGroup(idSelectedGroup).then((data) => setTaskList(data.data));
+            }
+            else if (taskFilterSelector === "active") {
+                getActiveTasksInGroup(idSelectedGroup).then((data) => setTaskList(data.data));
+            }
         }
-    }, [idSelectedGroup]);
+    }, [idSelectedGroup, taskFilterSelector]);
 
     useEffect(() => {
         if (idSelectedTask !== null) {
@@ -110,6 +115,16 @@ function Tasks() {
                 {groupList.map((group) => (
                     <MenuItem value={group.id}>{group.name}</MenuItem>
                 ))}
+            </Select>
+            <Select
+                value={taskFilterSelector}
+                onChange={(event) => setTaskFilterSelector(event.target.value)}
+                sx={{
+                    width: '100%',
+                }}
+            >
+                <MenuItem value="active">Active</MenuItem>
+                <MenuItem value="all">All</MenuItem>
             </Select>
         </Stack>
     );
