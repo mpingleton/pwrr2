@@ -7,6 +7,7 @@ const createTask = require('./createTask');
 const getTaskById = require('./getTaskById');
 const getTasksInProject = require('./getTasksInProject');
 const getTasksInGroup = require('./getTasksInGroup');
+const getActiveTasksInGroup = require('./getActiveTasksInGroup');
 
 module.exports = {
     resumeTaskById,
@@ -18,4 +19,5 @@ module.exports = {
     getTaskById,
     getTasksInProject,
     getTasksInGroup,
+    getActiveTasksInGroup,
 };
