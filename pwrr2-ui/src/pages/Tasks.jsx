@@ -21,6 +21,7 @@ import {
 
 import getGroupsInMe from '../api/groups/getGroupsInMe';
 import getTasksInGroup from '../api/tasks/getTasksInGroup';
+import getActiveTasksInGroup from '../api/tasks/getActiveTasksInGroup';
 import getTaskById from '../api/tasks/getTaskById';
 import completeTaskById from '../api/tasks/completeTaskById';
 import cancelTaskById from '../api/tasks/cancelTaskById';
@@ -42,7 +43,8 @@ function Tasks() {
 
     useEffect(() => {
         if (idSelectedGroup !== null) {
-            getTasksInGroup(idSelectedGroup).then((data) => setTaskList(data.data));
+            //getTasksInGroup(idSelectedGroup).then((data) => setTaskList(data.data));
+            getActiveTasksInGroup(idSelectedGroup).then((data) => setTaskList(data.data));
         }
     }, [idSelectedGroup]);
 
