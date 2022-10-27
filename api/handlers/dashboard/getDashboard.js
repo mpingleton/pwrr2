@@ -1,4 +1,4 @@
 
 module.exports = async (req, res) => {
-    res.send(200);
+    res.send(200, {});
 };
