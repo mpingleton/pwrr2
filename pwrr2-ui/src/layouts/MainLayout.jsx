@@ -187,6 +187,7 @@ function MainLayout(props) {
         </Box>
     );
 
+    // Add {AppBarCenter} to add the search bar back.
     const MainAppBar = (
         <AppBar position="static">
             <Toolbar
@@ -195,7 +196,6 @@ function MainLayout(props) {
                 }}
             >
                 {AppBarLeft}
-                {AppBarCenter}
                 {AppBarRight}
             </Toolbar>
         </AppBar>
