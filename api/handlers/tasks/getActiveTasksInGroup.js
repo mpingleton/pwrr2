@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
     const filteredTasks = unfilteredTasks.filter((task) => (task.completedDate === null && task.cancelledDate === null));
 
     res.send(200, {
-        numberTasks: filteredTasks,
+        numberTasks: filteredTasks.length,
         data: filteredTasks,
     });
 };

@@ -4,6 +4,7 @@ const completeProject = require('./completeProject');
 const advanceProjectStage = require('./advanceProjectStage');
 const getProjectById = require('./getProjectById');
 const getProjectsInGroup = require('./getProjectsInGroup');
+const getActiveProjectsInGroup = require('./getActiveProjectsInGroup');
 const createProject = require('./createProject');
 
 module.exports = {
@@ -13,5 +14,6 @@ module.exports = {
     advanceProjectStage,
     getProjectById,
     getProjectsInGroup,
+    getActiveProjectsInGroup,
     createProject,
 };

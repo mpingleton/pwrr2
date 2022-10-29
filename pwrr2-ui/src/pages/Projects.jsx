@@ -22,6 +22,7 @@ import {
 
 import getGroupsInMe from '../api/groups/getGroupsInMe';
 import getProjectsInGroup from '../api/projects/getProjectsInGroup';
+import getActiveProjectsInGroup from '../api/projects/getActiveProjectsInGroup';
 import getProjectById from '../api/projects/getProjectById';
 import advanceProjectStage from '../api/projects/advanceProjectStage';
 import cancelProject from '../api/projects/cancelProject';
@@ -31,6 +32,7 @@ function Projects() {
     const navigate = useNavigate();
     const [groupList, setGroupList] = useState([]);
     const [idSelectedGroup, setSelectedGroup] = useState(null);
+    const [projectFilterSelector, setProjectFilterSelector] = useState("active");
     const [projectList, setProjectList] = useState([]);
     const [idSelectedProject, setSelectedProject] = useState(null);
     const [selectedProjectData, setSelectedProjectData] = useState(null);
@@ -41,9 +43,14 @@ function Projects() {
 
     useEffect(() => {
         if (idSelectedGroup !== null) {
-            getProjectsInGroup(idSelectedGroup).then((data) => setProjectList(data.data));
+            if (projectFilterSelector === "all") {
+                getProjectsInGroup(idSelectedGroup).then((data) => setProjectList(data.data));
+            }
+            else if (projectFilterSelector === "active") {
+                getActiveProjectsInGroup(idSelectedGroup).then((data) => setProjectList(data.data));
+            }
         }
-    }, [idSelectedGroup]);
+    }, [idSelectedGroup, projectFilterSelector]);
 
     useEffect(() => {
         if (idSelectedProject !== null) {
@@ -95,6 +102,16 @@ function Projects() {
                 {groupList.map((group) => (
                     <MenuItem value={group.id}>{group.name}</MenuItem>
                 ))}
+            </Select>
+            <Select
+                value={projectFilterSelector}
+                onChange={(event) => setProjectFilterSelector(event.target.value)}
+                sx={{
+                    width: '100%',
+                }}
+            >
+                <MenuItem value="active">Active</MenuItem>
+                <MenuItem value="all">All</MenuItem>
             </Select>
             <Button
                 variant="contained"

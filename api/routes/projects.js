@@ -13,6 +13,7 @@ router.post('/id/:projectId/cancel', session(), validator(projectsValidators.can
 router.post('/id/:projectId/complete', session(), validator(projectsValidators.completeProject), projectsHandlers.completeProject);
 router.post('/id/:projectId/advancestage', session(), validator(projectsValidators.advanceProjectStage), projectsHandlers.advanceProjectStage);
 router.get('/id/:projectId', session(), validator(projectsValidators.getProjectById), projectsHandlers.getProjectById);
+router.get('/in/group/:groupId/active', session(), validator(projectsValidators.getActiveProjectsInGroup), projectsHandlers.getActiveProjectsInGroup);
 router.get('/in/group/:groupId', session(), validator(projectsValidators.getProjectsInGroup), projectsHandlers.getProjectsInGroup);
 router.put('/', session(), validator(projectsValidators.createProject), projectsHandlers.createProject);
 
