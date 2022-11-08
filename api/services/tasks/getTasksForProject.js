@@ -17,6 +17,7 @@ module.exports = async (projectId) => {
         id: taskIdentifier(task.id),
         projectId: projectIdentifier(task.projectId),
         groupId: groupIdentifier(task.groupId),
+        userId: task.userId,
         dueDate: task.dueDate,
         startedDate: task.startedDate,
         startedBy: task.startedBy,
