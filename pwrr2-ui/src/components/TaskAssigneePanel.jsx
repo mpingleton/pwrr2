@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
     Paper,
@@ -6,9 +6,20 @@ import {
     Typography,
     Divider,
     TextField,
+    Select,
+    MenuItem,
 } from '@mui/material';
 
+import getUsersInGroup from '../api/users/getUsersInGroup';
+
 function TaskAssigneePanel(props) {
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        getUsersInGroup(props.task.groupId)
+            .then((data) => setUsers(data.data));
+    }, []);
+
     return (
         <Paper
             sx={{ padding: 2 }}
@@ -29,6 +40,16 @@ function TaskAssigneePanel(props) {
                     label="Name"
                     value={props.task.groupData.name}
                 />
+                <Select
+                    label="User"
+                    value={props.task.userId}
+                    onChange={(event) => {}}
+                    sx={{
+                        width: '100%',
+                    }}
+                >
+                    {users.map((user) => (<MenuItem value={user.id}>{user.username}</MenuItem>))}
+                </Select>
             </Stack>
         </Paper>
     );
