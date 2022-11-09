@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 
 import getUsersInGroup from '../api/users/getUsersInGroup';
+import assignTaskToUser from '../api/tasks/assignTaskToUser';
 
 function TaskAssigneePanel(props) {
     const [users, setUsers] = useState([]);
@@ -19,6 +20,10 @@ function TaskAssigneePanel(props) {
         getUsersInGroup(props.task.groupId)
             .then((data) => setUsers(data.data));
     }, []);
+
+    const handleAssignToUser = (event) => {
+        assignTaskToUser(props.task.id, event.target.value)
+    };
 
     return (
         <Paper
@@ -43,7 +48,7 @@ function TaskAssigneePanel(props) {
                 <Select
                     label="User"
                     value={props.task.userId}
-                    onChange={(event) => {}}
+                    onChange={handleAssignToUser}
                     sx={{
                         width: '100%',
                     }}
