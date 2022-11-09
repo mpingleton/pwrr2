@@ -13,6 +13,7 @@ router.post('/id/:taskId/complete', session(), validator(tasksValidators.complet
 router.post('/id/:taskId/pause', session(), validator(tasksValidators.pauseTaskById), tasksHandlers.pauseTaskById);
 router.post('/id/:taskId/resume', session(), validator(tasksValidators.resumeTaskById), tasksHandlers.resumeTaskById);
 router.post('/id/:taskId/cancel', session(), validator(tasksValidators.cancelTaskById), tasksHandlers.cancelTaskById);
+router.post('/id/:taskId/assign/user/:userId', validator(tasksValidators.assignTaskToUser), tasksHandlers.assignTaskToUser);
 router.get('/id/:taskId', session(), validator(tasksValidators.getTaskById), tasksHandlers.getTaskById);
 router.get('/in/group/:groupId/active', session(), validator(tasksValidators.getActiveTasksInGroup), tasksHandlers.getActiveTasksInGroup);
 router.get('/in/group/:groupId', session(), validator(tasksValidators.getTasksInGroup), tasksHandlers.getTasksInGroup);
