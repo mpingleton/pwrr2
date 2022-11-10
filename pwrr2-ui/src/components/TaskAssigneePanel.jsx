@@ -11,7 +11,6 @@ import {
 } from '@mui/material';
 
 import getUsersInGroup from '../api/users/getUsersInGroup';
-import assignTaskToUser from '../api/tasks/assignTaskToUser';
 
 function TaskAssigneePanel(props) {
     const [users, setUsers] = useState([]);
@@ -22,7 +21,7 @@ function TaskAssigneePanel(props) {
     }, []);
 
     const handleAssignToUser = (event) => {
-        assignTaskToUser(props.task.id, event.target.value)
+        props.reassignTask(event.target.value);
     };
 
     return (

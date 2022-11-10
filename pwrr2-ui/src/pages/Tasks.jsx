@@ -28,6 +28,7 @@ import cancelTaskById from '../api/tasks/cancelTaskById';
 import pauseTaskById from '../api/tasks/pauseTaskById';
 import startTaskById from '../api/tasks/startTaskById';
 import resumeTaskById from '../api/tasks/resumeTaskById';
+import assignTaskToUser from '../api/tasks/assignTaskToUser';
 
 function Tasks() {
     const navigate = useNavigate();
@@ -88,6 +89,12 @@ function Tasks() {
 
     const handleResumeTask = () => {
         resumeTaskById(idSelectedTask)
+            .then(() => getTaskById(idSelectedTask))
+            .then((data) => setSelectedTaskData(data));
+    };
+
+    const handleReassignTask = (userId) => {
+        assignTaskToUser(selectedTaskData.id, userId)
             .then(() => getTaskById(idSelectedTask))
             .then((data) => setSelectedTaskData(data));
     };
@@ -179,7 +186,12 @@ function Tasks() {
                 spacing={1}
             >
                 <Box sx={{ width: '60%' }}><TaskProjectPanel task={selectedTaskData} /></Box>
-                <Box sx={{ width: '40%' }}><TaskAssigneePanel task={selectedTaskData} /></Box>
+                <Box sx={{ width: '40%' }}>
+                    <TaskAssigneePanel
+                        task={selectedTaskData}
+                        reassignTask={handleReassignTask}
+                    />
+                </Box>
             </Stack>
             <Stack
                 direction="row"
