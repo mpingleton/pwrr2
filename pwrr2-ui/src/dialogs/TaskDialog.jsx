@@ -129,6 +129,7 @@ function TaskDialog(props) {
                         <Stack
                             direction="row"
                             spacing={1}
+                            justifyContent="end"
                         >
                             <Button
                                 variant="contained"

@@ -48,7 +48,31 @@ function ProjectGroupTaskPanel(props) {
                 direction="column"
                 spacing={2}
             >
-                <Typography variant="h5">Group Tasks</Typography>
+                <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                >
+                    <Typography variant="h5">Group Tasks</Typography>
+                    <Stack
+                        direction="row"
+                        spacing={2}
+                    >
+                        <Button
+                            variant='contained'
+                            onClick={() => setTaskDialogOpen(true)}
+                            disabled={selectedTaskId === null}
+                        >
+                            View
+                        </Button>
+                        <Button
+                            variant='contained'
+                            onClick={() => setTaskInputDialogOpen(true)}
+                        >
+                            New
+                        </Button>
+                    </Stack>
+                </Stack>
                 <Divider />
                 <Box sx={{ height: '300px' }}>
                     <DataGrid
@@ -63,24 +87,6 @@ function ProjectGroupTaskPanel(props) {
                         }}
                     />
                 </Box>
-                <Stack
-                    direction="row"
-                    spacing={2}
-                >
-                    <Button
-                        variant='contained'
-                        onClick={() => setTaskDialogOpen(true)}
-                        disabled={selectedTaskId === null}
-                    >
-                        View
-                    </Button>
-                    <Button
-                        variant='contained'
-                        onClick={() => setTaskInputDialogOpen(true)}
-                    >
-                        New
-                    </Button>
-                </Stack>
             </Stack>
         </Paper>
     );

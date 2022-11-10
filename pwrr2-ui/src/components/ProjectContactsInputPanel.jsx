@@ -48,7 +48,24 @@ function ContactPanel(props) {
                 direction="column"
                 spacing={2}
             >
-                <Typography variant="h5">Contacts</Typography>
+                <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                >
+                    <Typography variant="h5">Contacts</Typography>
+                    <Stack
+                        direction="row"
+                        spacing={1}
+                    >
+                        <Button
+                            variant="contained"
+                            onClick={() => setAddContactDialogOpen(true)}
+                        >
+                            Search
+                        </Button>
+                    </Stack>
+                </Stack>
                 <Divider />
                 <Box sx={{ height: '300px' }}>
                     <DataGrid
@@ -58,17 +75,7 @@ function ContactPanel(props) {
                         rowsPerPageOptions={[5]}
                     />
                 </Box>
-                <Stack
-                    direction="row"
-                    spacing={1}
-                >
-                    <Button
-                        variant="contained"
-                        onClick={() => setAddContactDialogOpen(true)}
-                    >
-                        Search
-                    </Button>
-                </Stack>
+                
             </Stack>
         </Paper>
     );
