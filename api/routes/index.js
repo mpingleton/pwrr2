@@ -8,6 +8,7 @@ const organizationsRoute = require('./organizations');
 const groupsRoute = require('./groups');
 const dashboardRoute = require('./dashboard');
 const usersRoute = require('./users');
+const notificationsRoute = require('./notifications');
 
 const router = express.Router();
 
@@ -19,5 +20,6 @@ router.use('/organizations', organizationsRoute);
 router.use('/groups', groupsRoute);
 router.use('/dashboard', dashboardRoute);
 router.use('/users', usersRoute);
+router.use('/notifications', notificationsRoute);
 
 module.exports = router;
