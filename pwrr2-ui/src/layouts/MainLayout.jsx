@@ -21,6 +21,7 @@ import BackIcon from '@mui/icons-material/NavigateBefore';
 import ForwardIcon from '@mui/icons-material/NavigateNext';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
+import NavigationItem from '../components/NavigationItem';
 import NotificationItem from '../components/NotificationItem';
 
 import getMyNotifications from '../api/notifications/getMyNotifications';
@@ -62,36 +63,30 @@ function MainLayout(props) {
             </Toolbar>
             <Divider />
             <List>
-                <ListItem
-                    button
+                <NavigationItem
+                    icon={<ArrowCircleRightIcon />}
+                    text="Dashboard"
                     onClick={() => {
                         setNavigationDrawerOpen(false);
                         navigate('/dashboard', { replace: true });
                     }}
-                >
-                    <ListItemIcon><ArrowCircleRightIcon /></ListItemIcon>
-                    <ListItemText primary="Dashboard" />
-                </ListItem>
-                <ListItem
-                    button
+                />
+                <NavigationItem
+                    icon={<ArrowCircleRightIcon />}
+                    text="Projects"
                     onClick={() => {
                         setNavigationDrawerOpen(false);
                         navigate('/projects', { replace: true });
                     }}
-                >
-                    <ListItemIcon><ArrowCircleRightIcon /></ListItemIcon>
-                    <ListItemText primary="Projects" />
-                </ListItem>
-                <ListItem
-                    button
+                />
+                <NavigationItem
+                    icon={<ArrowCircleRightIcon />}
+                    text="Tasks"
                     onClick={() => {
                         setNavigationDrawerOpen(false);
                         navigate('/tasks', { replace: true });
                     }}
-                >
-                    <ListItemIcon><ArrowCircleRightIcon /></ListItemIcon>
-                    <ListItemText primary="Tasks" />
-                </ListItem>
+                />
             </List>
         </Drawer>
     );
