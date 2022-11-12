@@ -21,6 +21,8 @@ import BackIcon from '@mui/icons-material/NavigateBefore';
 import ForwardIcon from '@mui/icons-material/NavigateNext';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
+import NotificationItem from '../components/NotificationItem';
+
 import getMyNotifications from '../api/notifications/getMyNotifications';
 
 function MainLayout(props) {
@@ -125,23 +127,7 @@ function MainLayout(props) {
                     overflow: 'scroll'
                 }}
             >
-                {notifications.map((notif) => (
-                    <ListItem button>
-                        <ListItemText
-                            primary={notif.action}
-                            secondary="Notification description goes here."
-                            sx={{
-                                textAlign: 'start'
-                            }}
-                        />
-                        <ListItemText
-                            secondary={new Date(notif.timestamp).toLocaleString()}
-                            sx={{
-                                textAlign: 'end'
-                            }}
-                        />
-                    </ListItem>
-                ))}
+                {notifications.map((notif) => (<NotificationItem notification={notif} />))}
             </List>
         </Drawer>
     );
