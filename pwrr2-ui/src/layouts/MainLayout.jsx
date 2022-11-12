@@ -67,9 +67,7 @@ function MainLayout(props) {
                         navigate('/dashboard', { replace: true });
                     }}
                 >
-                    <ListItemIcon>
-                        <ArrowCircleRightIcon />
-                    </ListItemIcon>
+                    <ListItemIcon><ArrowCircleRightIcon /></ListItemIcon>
                     <ListItemText primary="Dashboard" />
                 </ListItem>
                 <ListItem
@@ -79,9 +77,7 @@ function MainLayout(props) {
                         navigate('/projects', { replace: true });
                     }}
                 >
-                    <ListItemIcon>
-                        <ArrowCircleRightIcon />
-                    </ListItemIcon>
+                    <ListItemIcon><ArrowCircleRightIcon /></ListItemIcon>
                     <ListItemText primary="Projects" />
                 </ListItem>
                 <ListItem
@@ -91,9 +87,7 @@ function MainLayout(props) {
                         navigate('/tasks', { replace: true });
                     }}
                 >
-                    <ListItemIcon>
-                        <ArrowCircleRightIcon />
-                    </ListItemIcon>
+                    <ListItemIcon><ArrowCircleRightIcon /></ListItemIcon>
                     <ListItemText primary="Tasks" />
                 </ListItem>
             </List>
