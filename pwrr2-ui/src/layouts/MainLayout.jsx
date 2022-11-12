@@ -21,10 +21,17 @@ import BackIcon from '@mui/icons-material/NavigateBefore';
 import ForwardIcon from '@mui/icons-material/NavigateNext';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
+import getMyNotifications from '../api/notifications/getMyNotifications';
+
 function MainLayout(props) {
     const navigate = useNavigate();
     const [isNavigationDrawerOpen, setNavigationDrawerOpen] = useState(false);
     const [isNotificationDrawerOpen, setNotificationDrawerOpen] = useState(false);
+    const [notifications, setNotifications] = useState([]);
+
+    useEffect(() => {
+        getMyNotifications().then((data) => setNotifications(data.data));
+    }, []);
 
     const NavigationDrawer = (
         <Drawer
@@ -119,7 +126,29 @@ function MainLayout(props) {
                 </IconButton>
             </Toolbar>
             <Divider />
-
+            <List
+                sx={{
+                    overflow: 'scroll'
+                }}
+            >
+                {notifications.map((notif) => (
+                    <ListItem button>
+                        <ListItemText
+                            primary={notif.action}
+                            secondary="Notification description goes here."
+                            sx={{
+                                textAlign: 'start'
+                            }}
+                        />
+                        <ListItemText
+                            secondary={new Date(notif.timestamp).toLocaleString()}
+                            sx={{
+                                textAlign: 'end'
+                            }}
+                        />
+                    </ListItem>
+                ))}
+            </List>
         </Drawer>
     );
 
