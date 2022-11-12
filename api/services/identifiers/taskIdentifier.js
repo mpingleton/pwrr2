@@ -1,5 +1,9 @@
 
 module.exports = (id) => {
+    if (id === null) {
+        return null;
+    }
+
     var baseString = 'PWRT000000000000';
     const stringId = id.toString(10);
 
