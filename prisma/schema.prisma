@@ -221,6 +221,7 @@ model GroupNotification {
   projectId Int?
   taskId Int?
   action String @db.VarChar(20)
+  timestamp DateTime @default(now())
   dismissed Boolean @default(false)
 
   group Group @relation(fields: [groupId], references: [id])

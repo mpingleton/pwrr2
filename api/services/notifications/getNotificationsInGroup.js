@@ -19,6 +19,7 @@ module.exports = async (groupId) => {
         projectId: projectIdentifier(notification.projectId),
         taskId: taskIdentifier(notification.taskId),
         action: notification.action,
+        timestamp: notification.timestamp,
         dismissed: notification.dismissed,
     }));
 
