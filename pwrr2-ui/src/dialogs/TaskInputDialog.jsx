@@ -61,7 +61,24 @@ function TaskInputDialog(props) {
                         direction="column"
                         spacing={1}
                     >
-                        <Typography variant="h5">New Task</Typography>
+                        <Stack
+                            direction="row"
+                            justifyContent="space-between"
+                            alignItems="center"
+                        >
+                            <Typography variant="h5">New Task</Typography>
+                            <Stack
+                                direction="row"
+                                spacing={1}
+                            >
+                                <Button
+                                    variant="contained"
+                                    onClick={() => handleSubmitTask()}
+                                >
+                                    Add
+                                </Button>
+                            </Stack>
+                        </Stack>
                         <Divider />
                         <TextField
                             value={taskDescription}
@@ -95,18 +112,6 @@ function TaskInputDialog(props) {
                                     renderInput={(params) => <TextField {...params} />}
                                 />
                             </LocalizationProvider>
-                        </Stack>
-                        <Divider />
-                        <Stack
-                            direction="row"
-                            spacing={1}
-                        >
-                            <Button
-                                variant="contained"
-                                onClick={() => handleSubmitTask()}
-                            >
-                                Add
-                            </Button>
                         </Stack>
                     </Stack>
                 </Paper>
