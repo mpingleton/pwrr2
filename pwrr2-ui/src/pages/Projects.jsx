@@ -42,6 +42,15 @@ function Projects() {
     }, []);
 
     useEffect(() => {
+        if (groupList.length === 0) {
+            setSelectedGroup(null);
+        }
+        else {
+            setSelectedGroup(groupList[0].id);
+        }
+    }, [groupList]);
+
+    useEffect(() => {
         if (idSelectedGroup !== null) {
             if (projectFilterSelector === "all") {
                 getProjectsInGroup(idSelectedGroup).then((data) => setProjectList(data.data));

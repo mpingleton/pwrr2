@@ -44,6 +44,15 @@ function Tasks() {
     }, []);
 
     useEffect(() => {
+        if (groupList.length === 0) {
+            setSelectedGroup(null);
+        }
+        else {
+            setSelectedGroup(groupList[0].id);
+        }
+    }, [groupList]);
+
+    useEffect(() => {
         if (idSelectedGroup !== null) {
             if (taskFilterSelector === "all") {
                 getTasksInGroup(idSelectedGroup).then((data) => setTaskList(data.data));
