@@ -27,7 +27,7 @@ function TaskListIndependentTasks(props) {
                 direction="column"
                 spacing={2}
             >
-                <Typography variant="h5">Independent Tasks</Typography>
+                <Typography variant="h5">Required Tasks</Typography>
                 <Divider />
                 <Box sx={{ height: '300px' }}>
                     <DataGrid
