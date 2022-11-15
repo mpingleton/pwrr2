@@ -8,11 +8,8 @@ import {
     IconButton,
     Paper,
     InputBase,
-    ListItem,
-    ListItemIcon,
     Divider,
     List,
-    ListItemText,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import NotificationIcon from '@mui/icons-material/Notifications';
