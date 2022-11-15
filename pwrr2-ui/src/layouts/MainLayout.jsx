@@ -40,7 +40,7 @@ function MainLayout(props) {
             open={isNavigationDrawerOpen}
             onClose={() => setNavigationDrawerOpen(false)}
             sx={{
-                zIndex: 2,
+                zIndex: 5,
                 width: 300,
                 '& .MuiDrawer-paper': {
                     width: 300,
@@ -95,7 +95,7 @@ function MainLayout(props) {
             open={isNotificationDrawerOpen}
             onClose={() => setNotificationDrawerOpen(false)}
             sx={{
-                zIndex: 2,
+                zIndex: 5,
                 width: 500,
                 '& .MuiDrawer-paper': {
                     width: 500,
