@@ -16,12 +16,50 @@ function PrimaryRouter() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/tasks" element={<MainLayout element={<Tasks />} />} />
-                <Route path='/projects/new' element={<MainLayout element={<NewProject />} />} />
-                <Route path="/projects" element={<MainLayout element={<Projects />} />} />
-                <Route path="/dashboard" element={<MainLayout element={<Dashboard />} />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/" element={<Warning />} />
+                <Route
+                    path="/tasks"
+                    element={
+                        <MainLayout
+                            element={<Tasks />}
+                        />
+                    }
+                />
+                <Route
+                    path='/projects/new'
+                    element={
+                        <MainLayout
+                            element={<NewProject />}
+                        />
+                    }
+                />
+                <Route
+                    path="/projects"
+                    element={
+                        <MainLayout
+                            element={<Projects />}
+                        />
+                    } 
+                />
+                <Route
+                    path="/dashboard"
+                    element={
+                        <MainLayout
+                            element={<Dashboard />}
+                        />
+                    }
+                />
+                <Route
+                    path="/login"
+                    element={
+                        <Login />
+                    }
+                />
+                <Route
+                    path="/"
+                    element={
+                        <Warning />
+                    }
+                />
             </Routes>
         </BrowserRouter>
     );
