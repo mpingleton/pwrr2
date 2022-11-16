@@ -10,6 +10,8 @@ import {
     InputBase,
     Divider,
     List,
+    Typography,
+    Stack,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import NotificationIcon from '@mui/icons-material/Notifications';
@@ -132,14 +134,26 @@ function MainLayout(props) {
                 justifyContent: 'flex-start'
             }}
         >
-            <IconButton
-                size='large'
-                edge='start'
-                color='inherit'
-                onClick={() => setNavigationDrawerOpen(true)}
+            <Stack
+                direction="row"
+                alignItems="center"
+                spacing={2}
             >
-                <MenuIcon />
-            </IconButton>
+                <IconButton
+                    size='large'
+                    edge='start'
+                    color='inherit'
+                    onClick={() => setNavigationDrawerOpen(true)}
+                >
+                    <MenuIcon />
+                </IconButton>
+                <Typography
+                    variant="h5"
+                    color="inherit"
+                >
+                    {props.title}
+                </Typography>
+            </Stack>
         </Box>
     );
 

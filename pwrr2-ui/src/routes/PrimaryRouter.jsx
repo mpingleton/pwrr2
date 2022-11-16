@@ -20,6 +20,7 @@ function PrimaryRouter() {
                     path="/tasks"
                     element={
                         <MainLayout
+                            title="Tasks"
                             element={<Tasks />}
                         />
                     }
@@ -28,6 +29,7 @@ function PrimaryRouter() {
                     path='/projects/new'
                     element={
                         <MainLayout
+                            title="New Project"
                             element={<NewProject />}
                         />
                     }
@@ -36,6 +38,7 @@ function PrimaryRouter() {
                     path="/projects"
                     element={
                         <MainLayout
+                            title="Projects"
                             element={<Projects />}
                         />
                     } 
@@ -44,6 +47,7 @@ function PrimaryRouter() {
                     path="/dashboard"
                     element={
                         <MainLayout
+                            title="Dashboard"
                             element={<Dashboard />}
                         />
                     }
