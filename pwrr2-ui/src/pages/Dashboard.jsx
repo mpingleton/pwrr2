@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 import {
-    Stack, Typography,
+    Stack,
+    Typography,
+    Box,
 } from '@mui/material';
+
+import DashboardProjectsPanel from '../components/DashboardProjectsPanel';
+import DashboardTasksPanel from '../components/DashboardTasksPanel';
 
 import getDashboard from "../api/dashboard/getDashboard";
 
@@ -21,8 +26,16 @@ function Dashboard() {
         <Stack
             direction='column'
             spacing={1}
+            padding={1}
         >
-            
+            <Stack
+                direction="row"
+                spacing={1}
+                sx={{ width: '100%' }}
+            >
+                <Box sx={{ width: '50%' }}><DashboardProjectsPanel data={data} /></Box>
+                <Box sx={{ width: '50%' }}><DashboardTasksPanel data={data} /></Box>
+            </Stack>
         </Stack>
     );
 }
