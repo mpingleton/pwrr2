@@ -46,7 +46,6 @@ function ProjectListItem(props) {
                     justifyContent="space-between"
                 >
                     <Typography variant='subtitle2'>{props.project.id}</Typography>
-                    <Typography variant='subtitle2'>Needs Attention</Typography>
                     <Typography variant='subtitle2'>{status()}</Typography>
                 </Stack>
             </Stack>
