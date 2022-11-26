@@ -6,6 +6,8 @@ import {
     Typography,
     Divider,
     Box,
+    TextField,
+    Button,
 } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
@@ -36,6 +38,30 @@ function ProjectAttachmentPanel(props) {
                         rowsPerPageOptions={[5]}
                     />
                 </Box>
+                <Stack
+                    direction="row"
+                    spacing={1}
+                >
+                    <TextField
+                        InputProps={{ readOnly: true }}
+                        label="Filename..."
+                        value={null}
+                        sx={{ width: '100%' }}
+                    />
+                    <Button
+                        variant="contained"
+                        onClick={() => {}}
+                    >
+                        Browse
+                    </Button>
+                    <Button
+                        variant="contained"
+                        onClick={() => {}}
+                        disabled
+                    >
+                        Upload
+                    </Button>
+                </Stack>
             </Stack>
         </Paper>
     );
