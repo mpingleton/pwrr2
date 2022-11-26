@@ -6,6 +6,7 @@ import {
     Paper,
     Stack,
     TextField,
+    Typography,
     Button,
     Divider
 } from '@mui/material';
@@ -224,37 +225,60 @@ function TaskDialog(props) {
                                 </Stack>
                             </Stack>
                         </Stack>
+                        <Divider />
                         <Stack
                             direction="row"
                             spacing={1}
                             justifyContent="space-evenly"
                         >
-                            <Box 
+                            <Stack
+                                direction="column"
+                                spacing={1}
                                 sx={{
                                     width: '100%',
-                                    height: '300px'
                                 }}
                             >
-                                <DataGrid
-                                    rows={task.dependentTasks}
-                                    columns={columns}
-                                    pageSize={5}
-                                    rowsPerPageOptions={[5]}
-                                />
-                            </Box>
-                            <Box 
+                                <Typography variant="h5">Required Tasks</Typography>
+                                <Box 
+                                    sx={{
+                                        width: '100%',
+                                        height: '300px'
+                                    }}
+                                >
+                                    <DataGrid
+                                        rows={task.independentTasks}
+                                        columns={columns}
+                                        pageSize={5}
+                                        rowsPerPageOptions={[5]}
+                                    />
+                                </Box>
+                            </Stack>
+                            <Divider
+                                flexItem
+                                orientation='vertical'
+                            />
+                            <Stack
+                                direction="column"
+                                spacing={1}
                                 sx={{
                                     width: '100%',
-                                    height: '300px'
                                 }}
                             >
-                                <DataGrid
-                                    rows={task.independentTasks}
-                                    columns={columns}
-                                    pageSize={5}
-                                    rowsPerPageOptions={[5]}
-                                />
-                            </Box>
+                                <Typography variant="h5">Dependent Tasks</Typography>
+                                <Box 
+                                    sx={{
+                                        width: '100%',
+                                        height: '300px'
+                                    }}
+                                >
+                                    <DataGrid
+                                        rows={task.dependentTasks}
+                                        columns={columns}
+                                        pageSize={5}
+                                        rowsPerPageOptions={[5]}
+                                    />
+                                </Box>
+                            </Stack>
                         </Stack>
                     </Stack>
                 </Paper>
