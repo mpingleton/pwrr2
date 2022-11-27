@@ -13,6 +13,18 @@ module.exports = async (req, res) => {
     if (taskData.userId !== null) {
         taskData.userData = await getSafeUserById(taskData.userId);
     }
+    if (taskData.startedBy !== null) {
+        taskData.startedByData = await getSafeUserById(taskData.startedBy);
+    }
+    if (taskData.pausedBy !== null) {
+        taskData.pausedByData = await getSafeUserById(taskData.startedBy);
+    }
+    if (taskData.completedBy !== null) {
+        taskData.completedByData = await getSafeUserById(taskData.startedBy);
+    }
+    if (taskData.cancelledBy !== null) {
+        taskData.cancelledByData = await getSafeUserById(taskData.startedBy);
+    }
     taskData.dependentTasks = await getDependentTasksForTask(taskData.id)
                                         .then((tasks) => Promise.all(tasks.map((task) => getTaskById(task))));
     taskData.independentTasks = await getIndependentTasksForTask(taskData.id)

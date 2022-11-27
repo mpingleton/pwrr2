@@ -75,28 +75,28 @@ function TaskDialog(props) {
         if (task.completedBy !== null) {
             return {
                 str: "Completed",
-                user: task.completedBy,
+                user: `${task.completedByData.rank} ${task.completedByData.firstName} ${task.completedByData.lastName}`,
                 timestamp: task.completedDate,
             };
         }
         else if (task.cancelledBy !== null) {
             return {
                 str: "Cancelled",
-                user: task.cancelledBy,
+                user: `${task.cancelledByData.rank} ${task.cancelledByData.firstName} ${task.cancelledByData.lastName}`,
                 timestamp: task.cancelledDate,
             };
         }
         else if (task.pausedBy !== null) {
             return {
                 str: "Paused",
-                user: task.pausedBy,
+                user: `${task.pausedByData.rank} ${task.pausedByData.firstName} ${task.pausedByData.lastName}`,
                 timestamp: task.pausedDate,
             };
         }
         else if (task.startedBy !== null) {
             return {
                 str: "In Progress",
-                user: task.startedBy,
+                user: `${task.startedByData.rank} ${task.startedByData.firstName} ${task.startedByData.lastName}`,
                 timestamp: task.startedDate,
             };
         }
