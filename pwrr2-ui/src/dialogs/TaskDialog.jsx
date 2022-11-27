@@ -213,7 +213,7 @@ function TaskDialog(props) {
                                     <TextField
                                         InputProps={{ readOnly: true }}
                                         label="Assigned Group"
-                                        value={task.groupId}
+                                        value={task.groupData.name}
                                         sx={{ width: '100%' }}
                                     />
                                     <TextField
