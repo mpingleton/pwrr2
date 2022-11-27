@@ -169,6 +169,7 @@ function ProjectStagePanel(props) {
                     variant='contained'
                     sx={{ width: '100%' }}
                     onClick={props.completeProject}
+                    disabled={props.project.completedBy !== null || props.project.cancelledBy !== null}
                 >
                     Complete
                 </Button>
@@ -180,6 +181,7 @@ function ProjectStagePanel(props) {
                         variant="contained"
                         sx={{ width: '100%' }}
                         onClick={props.advanceStage}
+                        disabled={props.project.completedBy !== null || props.project.cancelledBy !== null}
                     >
                         Next Stage
                     </Button>
@@ -187,6 +189,7 @@ function ProjectStagePanel(props) {
                         variant="contained"
                         sx={{ width: '100%' }}
                         onClick={props.cancelProject}
+                        disabled={props.project.completedBy !== null || props.project.cancelledBy !== null}
                     >
                         Cancel
                     </Button>
